@@ -345,6 +345,32 @@ h1 {
 }
 .metric span { font-size: 11px; color: var(--site-muted); line-height: 1.5; display: block; }
 
+/* Live experience counter */
+.metric-live strong {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.metric-live strong::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #62a77b;
+  box-shadow: 0 0 0 4px rgba(98, 167, 123, .18);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+  flex: 0 0 auto;
+}
+.metric-live #exp-clock {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: .01em;
+  color: var(--site-muted);
+}
+
 /* ============ SECTIONS ============ */
 .section { padding: 88px 0; }
 .section-head {
@@ -648,6 +674,7 @@ h1 {
   .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .project, .metric { transition: none; }
   #neural-canvas { display: none; }
+  .metric-live strong::before { animation: none; }
 }
 </style>
 </head>
@@ -714,7 +741,10 @@ h1 {
 
     <!-- METRICS -->
     <section class="container metrics reveal" aria-label="Professional overview">
-      <div class="metric"><strong>2022</strong><span>Started professional development</span></div>
+      <div class="metric metric-live">
+        <strong id="exp-elapsed">—</strong>
+        <span id="exp-clock">loading…</span>
+      </div>
       <div class="metric"><strong>Full-Stack</strong><span>Frontend to backend delivery</span></div>
       <div class="metric"><strong>Cloud &amp; DevOps</strong><span>Containers and infrastructure</span></div>
       <div class="metric"><strong>AI-assisted</strong><span>Claude Code in engineering workflows</span></div>
@@ -1007,6 +1037,62 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   items.forEach(el => io.observe(el));
+})();
+
+/* ============================================================
+   Live experience counter — since 11/10/2022 08:00
+   ============================================================ */
+(function initExperienceCounter() {
+  const start = new Date(2022, 9, 11, 8, 0, 0); // Oct 11, 2022 08:00 local
+  const elapsedEl = document.getElementById('exp-elapsed');
+  const clockEl   = document.getElementById('exp-clock');
+  if (!elapsedEl || !clockEl) return;
+
+  const pad = (n) => String(n).padStart(2, '0');
+
+  function compute() {
+    const now = new Date();
+    if (now < start) return { years: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+    // Precise year count via anniversaries (handles leap years)
+    let years = now.getFullYear() - start.getFullYear();
+    let anniversary = new Date(start);
+    anniversary.setFullYear(start.getFullYear() + years);
+    if (anniversary > now) {
+      years--;
+      anniversary = new Date(start);
+      anniversary.setFullYear(start.getFullYear() + years);
+    }
+
+    const rest = now - anniversary;
+    const days = Math.floor(rest / 86400000);
+    const hours = Math.floor((rest % 86400000) / 3600000);
+    const minutes = Math.floor((rest % 3600000) / 60000);
+    const seconds = Math.floor((rest % 60000) / 1000);
+
+    return { years, days, hours, minutes, seconds };
+  }
+
+  function render() {
+    const { years, days, hours, minutes, seconds } = compute();
+    elapsedEl.textContent = `${years}y ${days}d`;
+    clockEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} · since 11/10/2022`;
+  }
+
+  render();
+  // Align updates to the second boundary for cleaner visual rhythm
+  (function align() {
+    const delay = 1000 - (Date.now() % 1000);
+    setTimeout(function loop() {
+      render();
+      setTimeout(loop, 1000 - (Date.now() % 1000));
+    }, delay);
+  })();
+
+  // Pause when the tab is hidden to save CPU
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) render();
+  });
 })();
 
 /* ============================================================
