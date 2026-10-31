@@ -683,6 +683,58 @@ h1 {
   #neural-canvas { display: none; }
   .metric-live strong::before { animation: none; }
 }
+
+/* Sticky navigation, project metadata and animated tool cards */
+#app { overflow: visible; }
+.nav { position: sticky; top: 0; z-index: 50; min-height: 72px; background: rgba(230,233,222,.91); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); box-shadow: 0 1px 0 rgba(10,25,34,.08); }
+.nav-links a { transition: color .2s,opacity .2s; }
+.nav-links a:hover { opacity: .68; }
+.language-toggle { flex: 0 0 auto; border: 1px solid var(--site-border-strong); color: var(--site-on-background); background: rgba(255,255,255,.25); border-radius: 9px; min-width: 42px; padding: 9px 11px; font: 700 11px var(--font-body); letter-spacing: .08em; cursor: pointer; transition: transform .2s,background .2s,border-color .2s; }
+.language-toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,.55); border-color: var(--site-accent); }
+.nav, #about, #work, #tools, #experience, #contact { scroll-margin-top: 90px; }
+.project { transform-style: preserve-3d; }
+.project::before { content: ""; position: absolute; inset: 0 auto 0 -130%; width: 72%; pointer-events: none; background: linear-gradient(105deg,transparent,rgba(217,243,106,.13),transparent); transform: skewX(-18deg); transition: left .7s ease; z-index: 2; }
+.project:hover::before { left: 155%; }
+.project:hover { box-shadow: var(--shadow-lg); }
+.project-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin: 13px 0 0; position: relative; z-index: 3; }
+.ownership-badge, .progress-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px; font: 700 9px var(--font-body); letter-spacing: .045em; text-transform: uppercase; }
+.ownership-badge::before, .progress-badge::before { content: ""; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: currentColor; }
+.ownership-personal { color: #c8dcff; background: rgba(95,145,220,.16); border: 1px solid rgba(145,185,245,.3); }
+.ownership-company { color: #e1f69a; background: rgba(217,243,106,.12); border: 1px solid rgba(217,243,106,.27); }
+.status-idea { color: #ffd58a; background: rgba(255,190,90,.13); border: 1px solid rgba(255,190,90,.25); }
+.status-progress { color: #9ed6ff; background: rgba(95,175,235,.13); border: 1px solid rgba(95,175,235,.25); }
+.status-done { color: #9be1b3; background: rgba(98,167,123,.14); border: 1px solid rgba(98,167,123,.28); }
+.tools-section { background: color-mix(in srgb,var(--site-background) 68%,white); }
+.tools-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.tool-category { position: relative; padding: 24px; border: 1px solid var(--site-border); border-radius: var(--radius-md); background: var(--site-surface); box-shadow: var(--shadow-sm); transition: transform .28s,box-shadow .28s,border-color .28s; overflow: hidden; }
+.tool-category::after { content: ""; position: absolute; width: 120px; height: 120px; right: -60px; top: -60px; border: 1px solid color-mix(in srgb,var(--site-primary) 18%,transparent); border-radius: 50%; box-shadow: 0 0 0 16px color-mix(in srgb,var(--site-primary) 4%,transparent); }
+.tool-category:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--site-border-strong); }
+.tool-category h3 { font-size: 14px; margin: 0 0 18px; position: relative; z-index: 1; }
+.tool-list { display: flex; flex-wrap: wrap; gap: 9px; position: relative; z-index: 1; }
+.tool-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--site-border); border-radius: 9px; background: color-mix(in srgb,var(--site-background) 70%,white); color: var(--site-on-background); font-size: 11px; font-weight: 650; transition: transform .22s,background .22s,border-color .22s; }
+.tool-pill:hover { transform: translateY(-3px) scale(1.025); background: white; border-color: var(--site-border-strong); }
+.tool-icon { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: var(--site-primary); color: var(--site-on-primary); font: 800 9px var(--font-body); }
+.tools-note { color: var(--site-muted); font-size: 11px; margin: 18px 0 0; }
+@media (prefers-color-scheme: dark) {
+  .nav { background: rgba(8,18,26,.91); }
+  .tools-section { background: color-mix(in srgb,var(--site-background) 90%,white); }
+  .tool-category { background: var(--site-surface); }
+  .tool-pill { background: rgba(255,255,255,.07); color: var(--site-on-background); }
+  .tool-pill:hover { background: rgba(255,255,255,.13); }
+}
+@media (max-width: 950px) { .tools-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 760px) {
+  .nav { position: sticky; top: 0; gap: 10px; }
+  .nav-links { gap: 10px; }
+  .nav-links a:nth-child(2) { display: none; }
+  .language-toggle { padding: 8px; min-width: 38px; }
+  .tools-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project::before { display: none; }
+  .project, .tool-category, .tool-pill, .language-toggle { transition: none; }
+}
+
 </style>
 </head>
 <body>
@@ -697,36 +749,38 @@ h1 {
     <a class="brand" href="#top" aria-label="Rijaniaina Tendry home">
       <span class="brand-mark">RT</span><span>RIJANIaina TENDRY</span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#about">About</a>
-      <a href="#work">Selected work</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
+    <nav class="nav-links" aria-label="Main navigation" data-i18n-attr="aria-label:nav.label">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#work" data-i18n="nav.work">Projects</a>
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
-    <div class="availability"><span class="dot"></span> Open to remote</div>
+    <div class="availability"><span class="dot"></span><span data-i18n="nav.availability">Open to remote opportunities</span></div>
+    <button class="language-toggle" id="language-toggle" type="button" aria-label="Passer en français">FR</button>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="container hero">
       <div class="reveal">
-        <div class="eyebrow">Full-Stack Developer · Engineering · AI</div>
-        <h1>Building software that makes <span class="accent">complexity</span> useful.</h1>
-        <p class="hero-copy">
+        <div class="eyebrow" data-i18n="hero.eyebrow">Full-Stack Developer · Engineering · AI</div>
+        <h1 data-i18n="hero.title">Building software that makes <span class="accent">complexity</span> useful.</h1>
+        <p class="hero-copy" data-i18n="hero.copy">
           I'm Rijaniaina Tendry, a Full-Stack Developer based in Antananarivo, Madagascar.
           I design and build web platforms, backend services and engineering workflows — with a
           focus on maintainable architecture, practical delivery and AI-assisted development.
         </p>
         <div class="actions">
-          <a class="btn btn-primary" href="#work">Explore selected work <span aria-hidden="true">↗</span></a>
-          <a class="btn btn-secondary" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a>
+          <a class="btn btn-primary" href="#work"><span data-i18n="hero.cta">Explore selected work</span> <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer" data-i18n="hero.linkedin">Connect on LinkedIn ↗</a>
         </div>
         <div class="status-line">
           <span class="prompt">~/</span>
-          <span>currently building: distributed workflows &amp; AI-assisted tooling</span>
+          <span data-i18n="hero.status">currently building: distributed workflows &amp; AI-assisted tooling</span>
           <span class="cursor" aria-hidden="true"></span>
         </div>
-        <div class="scroll-indicator">Scroll to explore</div>
+        <div class="scroll-indicator" data-i18n="hero.scroll">Scroll to explore</div>
       </div>
 
       <aside class="profile-visual reveal" aria-label="Profile portrait">
@@ -752,29 +806,29 @@ h1 {
         <strong id="exp-elapsed">—</strong>
         <span id="exp-clock">loading…</span>
       </div>
-      <div class="metric"><strong>Full-Stack</strong><span>Frontend to backend delivery</span></div>
-      <div class="metric"><strong>Cloud &amp; DevOps</strong><span>Containers and infrastructure</span></div>
-      <div class="metric"><strong>AI-assisted</strong><span>Claude Code in engineering workflows</span></div>
+      <div class="metric"><strong>Full-Stack</strong><span data-i18n="metric.fullstack">Frontend to backend delivery</span></div>
+      <div class="metric"><strong>Cloud &amp; DevOps</strong><span data-i18n="metric.cloud">Containers and infrastructure</span></div>
+      <div class="metric"><strong>AI-assisted</strong><span data-i18n="metric.ai">Claude Code in engineering workflows</span></div>
     </section>
 
     <!-- ABOUT -->
     <section class="container section" id="about">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">01 / About</div>
-          <h2>Engineering with<br>the whole system in mind.</h2>
+          <div class="eyebrow" data-i18n="about.eyebrow">01 / About</div>
+          <h2 data-i18n="about.title">Engineering with<br>the whole system in mind.</h2>
         </div>
-        <p class="section-intro">
+        <p class="section-intro" data-i18n="about.intro">
           I work across the software lifecycle: understanding a problem, shaping the architecture,
           implementing features, integrating services and supporting reliable delivery.
         </p>
       </div>
       <div class="about-grid reveal">
-        <div class="about-lead">
+        <div class="about-lead" data-i18n="about.lead">
           I enjoy building systems where product requirements, technical architecture and
           day-to-day operations fit together.
         </div>
-        <div class="about-body">
+        <div class="about-body" data-i18n="about.body">
           My work spans modern web applications, API design, data-intensive backends,
           distributed workflows and platform infrastructure. I value clear boundaries,
           useful automation, observability and codebases that teams can evolve.
@@ -785,7 +839,7 @@ h1 {
       </div>
       <div class="skill-groups reveal">
         <div class="skill-group">
-          <h3>Frontend &amp; UI</h3>
+          <h3 data-i18n="skills.frontend">Frontend &amp; UI</h3>
           <div class="tags">
             <span class="tag">React</span><span class="tag">TypeScript</span>
             <span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
@@ -794,7 +848,7 @@ h1 {
           </div>
         </div>
         <div class="skill-group">
-          <h3>Backend &amp; APIs</h3>
+          <h3 data-i18n="skills.backend">Backend &amp; APIs</h3>
           <div class="tags">
             <span class="tag">Node.js</span><span class="tag">Go</span>
             <span class="tag">C# / .NET</span><span class="tag">Python</span>
@@ -803,7 +857,7 @@ h1 {
           </div>
         </div>
         <div class="skill-group">
-          <h3>Data &amp; Messaging</h3>
+          <h3 data-i18n="skills.data">Data &amp; Messaging</h3>
           <div class="tags">
             <span class="tag">PostgreSQL</span><span class="tag">Redis</span>
             <span class="tag">SQL</span><span class="tag">NoSQL</span>
@@ -811,7 +865,7 @@ h1 {
           </div>
         </div>
         <div class="skill-group">
-          <h3>Infrastructure &amp; AI</h3>
+          <h3 data-i18n="skills.infra">Infrastructure &amp; AI</h3>
           <div class="tags">
             <span class="tag">Docker</span><span class="tag">Kubernetes</span>
             <span class="tag">Linux</span><span class="tag">Apache</span>
@@ -827,10 +881,10 @@ h1 {
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">02 / Selected work</div>
-            <h2>Systems, platforms<br>&amp; engineering ideas.</h2>
+            <div class="eyebrow" data-i18n="work.eyebrow">02 / Selected work</div>
+            <h2 data-i18n="work.title">Systems, platforms<br>&amp; engineering ideas.</h2>
           </div>
-          <p class="section-intro">
+          <p class="section-intro" data-i18n="work.intro">
             A selection of product and technical work that reflects the kinds of problems
             I work on: platform foundations, distributed processing, collaboration and
             quality systems.
@@ -839,11 +893,12 @@ h1 {
         <div class="project-grid">
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">Platform architecture</span>
+              <span class="project-type" data-i18n="project.type.platform">Platform architecture</span>
               <span class="project-index">01</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-personal" data-i18n="project.personal">Personal project</span><span class="progress-badge status-idea" data-i18n="project.idea">Idea</span></div>
             <h3>All-Intranet</h3>
-            <p>A modular intranet platform built around a central Core: service lifecycle,
+            <p data-i18n="project.desc.all">A modular intranet platform built around a central Core: service lifecycle,
               identity, service discovery and a dynamic interface decoupled from plugins.</p>
             <div class="tags">
               <span class="tag">Platform design</span><span class="tag">Plugin arch.</span>
@@ -852,11 +907,12 @@ h1 {
           </article>
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">AI &amp; collaboration</span>
+              <span class="project-type" data-i18n="project.type.ai">AI &amp; collaboration</span>
               <span class="project-index">02</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-personal" data-i18n="project.personal">Personal project</span><span class="progress-badge status-progress" data-i18n="project.progress">In progress</span></div>
             <h3>Claude Colabs</h3>
-            <p>A collaborative engineering environment connecting people and AI agents
+            <p data-i18n="project.desc.colabs">A collaborative engineering environment connecting people and AI agents
               around shared Git workspaces, RBAC, task orchestration and auditable handoffs.</p>
             <div class="tags">
               <span class="tag">Claude Code</span><span class="tag">Git workflows</span>
@@ -865,11 +921,12 @@ h1 {
           </article>
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">Data platform</span>
+              <span class="project-type" data-i18n="project.type.data">Data platform</span>
               <span class="project-index">03</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-company" data-i18n="project.company">Company project</span><span class="progress-badge status-progress" data-i18n="project.progress">In progress</span></div>
             <h3>Master Data Management</h3>
-            <p>Identity and reference-data workflows with controlled entity creation,
+            <p data-i18n="project.desc.mdm">Identity and reference-data workflows with controlled entity creation,
               uniqueness checks, event-driven distribution and consumer projections.</p>
             <div class="tags">
               <span class="tag">Go</span><span class="tag">PostgreSQL</span>
@@ -878,11 +935,12 @@ h1 {
           </article>
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">Workflow engineering</span>
+              <span class="project-type" data-i18n="project.type.workflow">Workflow engineering</span>
               <span class="project-index">04</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-company" data-i18n="project.company">Company project</span><span class="progress-badge status-progress" data-i18n="project.progress">In progress</span></div>
             <h3>Fetcher &amp; Workflow Engine</h3>
-            <p>A configurable ingestion and orchestration platform covering multiple source
+            <p data-i18n="project.desc.fetcher">A configurable ingestion and orchestration platform covering multiple source
               types, queues, rules, schema validation, storage and event delivery.</p>
             <div class="tags">
               <span class="tag">Go</span><span class="tag">Temporal</span>
@@ -891,11 +949,12 @@ h1 {
           </article>
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">Quality engineering</span>
+              <span class="project-type" data-i18n="project.type.quality">Quality engineering</span>
               <span class="project-index">05</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-company" data-i18n="project.company">Company project</span><span class="progress-badge status-progress" data-i18n="project.progress">In progress</span></div>
             <h3>Sampling Service</h3>
-            <p>A quality-control service implementing ISO 2859-1 sampling logic, progressive
+            <p data-i18n="project.desc.sampling">A quality-control service implementing ISO 2859-1 sampling logic, progressive
               lot handling and integration patterns for operational quality workflows.</p>
             <div class="tags">
               <span class="tag">Go</span><span class="tag">ISO 2859-1</span>
@@ -904,11 +963,12 @@ h1 {
           </article>
           <article class="project reveal">
             <div class="project-top">
-              <span class="project-type">Infrastructure</span>
+              <span class="project-type" data-i18n="project.type.infra">Infrastructure</span>
               <span class="project-index">06</span>
             </div>
+            <div class="project-badges"><span class="ownership-badge ownership-company" data-i18n="project.company">Company project</span><span class="progress-badge status-progress" data-i18n="project.progress">In progress</span></div>
             <h3>Cloud-native foundations</h3>
-            <p>Hands-on work with containerized services and platform components, including
+            <p data-i18n="project.desc.cloud">Hands-on work with containerized services and platform components, including
               Kubernetes, Helm, Keycloak, Vault, Redis and Prometheus monitoring.</p>
             <div class="tags">
               <span class="tag">Kubernetes</span><span class="tag">Docker</span>
@@ -916,41 +976,55 @@ h1 {
             </div>
           </article>
         </div>
-        <p class="note">
+        <p class="note" data-i18n="work.note">
           // Some entries describe internal engineering work or product concepts.
           Implementation details and confidential client information are intentionally not published.
         </p>
       </div>
     </section>
 
+    <!-- TOOLS -->
+    <section class="container section tools-section" id="tools">
+      <div class="section-head reveal">
+        <div><div class="eyebrow" data-i18n="tools.eyebrow">03 / Tools &amp; workflow</div><h2 data-i18n="tools.title">The tools behind<br>the work.</h2></div>
+        <p class="section-intro" data-i18n="tools.intro">Tools I use across planning, source control, delivery and AI-assisted engineering.</p>
+      </div>
+      <div class="tools-grid">
+        <article class="tool-category reveal"><h3 data-i18n="tools.pm">Project management &amp; collaboration</h3><div class="tool-list"><span class="tool-pill"><span class="tool-icon">J</span>Jira</span><span class="tool-pill"><span class="tool-icon">L</span>Linear</span><span class="tool-pill"><span class="tool-icon">N</span>Notion</span><span class="tool-pill"><span class="tool-icon">S</span>Slack</span></div></article>
+        <article class="tool-category reveal"><h3 data-i18n="tools.dev">Development &amp; source control</h3><div class="tool-list"><span class="tool-pill"><span class="tool-icon">GL</span>GitLab</span><span class="tool-pill"><span class="tool-icon">GH</span>GitHub</span><span class="tool-pill"><span class="tool-icon">G</span>Git</span><span class="tool-pill"><span class="tool-icon">D</span>Docker</span></div></article>
+        <article class="tool-category reveal"><h3 data-i18n="tools.platform">Platform &amp; AI</h3><div class="tool-list"><span class="tool-pill"><span class="tool-icon">K8</span>Kubernetes</span><span class="tool-pill"><span class="tool-icon">H</span>Helm</span><span class="tool-pill"><span class="tool-icon">AI</span>Claude Code</span></div></article>
+      </div>
+      <p class="tools-note" data-i18n="tools.note">Tool familiarity varies by project and responsibility.</p>
+    </section>
+
     <!-- EXPERIENCE -->
     <section class="container section" id="experience">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">03 / Experience</div>
-          <h2>Building and<br>evolving software.</h2>
+          <div class="eyebrow" data-i18n="experience.eyebrow">04 / Experience</div>
+          <h2 data-i18n="experience.title">Building and<br>evolving software.</h2>
         </div>
-        <p class="section-intro">
+        <p class="section-intro" data-i18n="experience.intro">
           Professional software development experience since 2022, with work spanning
           application development, backend systems and technical platform concerns.
         </p>
       </div>
       <div class="experience-list reveal">
         <div class="experience-item">
-          <div class="experience-date">2022 — Present</div>
+          <div class="experience-date" data-i18n="experience.date">Oct 2022 — Present</div>
           <div>
-            <h3>Full-Stack Developer</h3>
-            <p>Professional software development across web and business applications.
+            <h3 data-i18n="experience.role">Senior Full-Stack Developer</h3>
+            <p data-i18n="experience.desc">Professional software development across web and business applications.
               Experience includes frontend and backend implementation, API and database
               integration, debugging, system design and delivery within collaborative
               engineering environments.</p>
           </div>
         </div>
         <div class="experience-item">
-          <div class="experience-date">Current focus</div>
+          <div class="experience-date" data-i18n="experience.focus">Current focus</div>
           <div>
-            <h3>AI-assisted engineering &amp; platform development</h3>
-            <p>Applying Claude Code in day-to-day development and exploring structured
+            <h3 data-i18n="experience.focusTitle">AI-assisted engineering &amp; platform development</h3>
+            <p data-i18n="experience.focusDesc">Applying Claude Code in day-to-day development and exploring structured
               collaboration between developers, AI agents, Git workflows and enterprise
               engineering processes.</p>
           </div>
@@ -963,28 +1037,28 @@ h1 {
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="eyebrow">04 / How I work</div>
-            <h2>Practical, structured,<br>delivery-focused.</h2>
+            <div class="eyebrow" data-i18n="approach.eyebrow">05 / How I work</div>
+            <h2 data-i18n="approach.title">Practical, structured,<br>delivery-focused.</h2>
           </div>
-          <p class="section-intro">
+          <p class="section-intro" data-i18n="approach.intro">
             Good software is more than a working feature. It should be understandable,
             operable and ready to evolve.
           </p>
         </div>
         <div class="approach-grid reveal">
           <div class="approach-item">
-            <strong>Understand the problem</strong>
-            <p>Clarify business needs, constraints and expected outcomes before choosing
+            <strong data-i18n="approach.oneTitle">Understand the problem</strong>
+            <p data-i18n="approach.one">Clarify business needs, constraints and expected outcomes before choosing
               an implementation.</p>
           </div>
           <div class="approach-item">
-            <strong>Design for change</strong>
-            <p>Favor clear interfaces, modular boundaries, maintainable data models and
+            <strong data-i18n="approach.twoTitle">Design for change</strong>
+            <p data-i18n="approach.two">Favor clear interfaces, modular boundaries, maintainable data models and
               explicit workflows.</p>
           </div>
           <div class="approach-item">
-            <strong>Deliver responsibly</strong>
-            <p>Use automation and AI tools pragmatically, with attention to testing,
+            <strong data-i18n="approach.threeTitle">Deliver responsibly</strong>
+            <p data-i18n="approach.three">Use automation and AI tools pragmatically, with attention to testing,
               reliability and operational visibility.</p>
           </div>
         </div>
@@ -995,13 +1069,13 @@ h1 {
     <section class="container contact" id="contact">
       <div class="contact-panel reveal">
         <div>
-          <div class="eyebrow">05 / Contact</div>
-          <h2>Have a project to build?</h2>
-          <p>I'm interested in remote opportunities, freelance missions and collaborations
+          <div class="eyebrow" data-i18n="contact.eyebrow">06 / Contact</div>
+          <h2 data-i18n="contact.title">Have a project to build?</h2>
+          <p data-i18n="contact.copy">I'm interested in remote opportunities, freelance missions and collaborations
             involving full-stack development, backend engineering, platform architecture
             and AI-enabled software delivery.</p>
         </div>
-        <a class="btn" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">
+        <a class="btn" data-i18n="contact.cta" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">
           Let's connect on LinkedIn ↗
         </a>
       </div>
@@ -1014,7 +1088,7 @@ h1 {
       <a href="https://github.com/Tendry81" target="_blank" rel="noreferrer">GitHub</a>
       &nbsp;·&nbsp;
       <a href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">LinkedIn</a>
-      &nbsp;·&nbsp; Antananarivo, MG
+      &nbsp;·&nbsp; <span data-i18n="footer.location">Antananarivo, Madagascar</span>
     </span>
   </footer>
 </div>
@@ -1025,7 +1099,69 @@ h1 {
    ============================================================ */
 document.getElementById('year').textContent = new Date().getFullYear();
 
+
 /* ============================================================
+   Portfolio internationalization
+   ============================================================ */
+const portfolioTranslations = {
+  en: {
+    'nav.label':'Main navigation','nav.about':'About','nav.work':'Projects','nav.tools':'Tools','nav.experience':'Experience','nav.contact':'Contact','nav.availability':'Open to remote opportunities',
+    'hero.eyebrow':'Full-Stack Developer · Engineering · AI','hero.title':'Building software that makes <span class="accent">complexity</span> useful.','hero.copy':"I'm Rijaniaina Tendry, a Full-Stack Developer based in Antananarivo, Madagascar. I design and build web platforms, backend services and engineering workflows — with a focus on maintainable architecture, practical delivery and AI-assisted development.",'hero.cta':'Explore selected work','hero.linkedin':'Connect on LinkedIn ↗','hero.status':'currently building: distributed workflows &amp; AI-assisted tooling','hero.scroll':'Scroll to explore',
+    'metric.fullstack':'Frontend to backend delivery','metric.cloud':'Containers and infrastructure','metric.ai':'Claude Code in engineering workflows',
+    'about.eyebrow':'01 / About','about.title':'Engineering with<br>the whole system in mind.','about.intro':'I work across the software lifecycle: understanding a problem, shaping the architecture, implementing features, integrating services and supporting reliable delivery.','about.lead':'I enjoy building systems where product requirements, technical architecture and day-to-day operations fit together.','about.body':'My work spans modern web applications, API design, data-intensive backends, distributed workflows and platform infrastructure. I value clear boundaries, useful automation, observability and codebases that teams can evolve. I also use AI coding tools such as Claude Code as part of practical software development workflows, while keeping engineering decisions and quality controls in focus.','skills.frontend':'Frontend &amp; UI','skills.backend':'Backend &amp; APIs','skills.data':'Data &amp; Messaging','skills.infra':'Infrastructure &amp; AI',
+    'work.eyebrow':'02 / Selected work','work.title':'Systems, platforms<br>&amp; engineering ideas.','work.intro':'A selection of product and technical work that reflects the kinds of problems I work on: platform foundations, distributed processing, collaboration and quality systems.','work.note':'Some entries describe internal engineering work or personal product concepts. Confidential implementation details are intentionally not published.',
+    'project.type.platform':'Platform architecture','project.type.ai':'AI &amp; collaboration','project.type.data':'Data platform','project.type.workflow':'Workflow engineering','project.type.quality':'Quality engineering','project.type.infra':'Infrastructure','project.personal':'Personal project','project.company':'Company project','project.idea':'Idea','project.progress':'In progress','project.done':'Done',
+    'project.desc.all':'A modular intranet platform built around a central Core: service lifecycle, identity, service discovery and a dynamic interface decoupled from plugins.','project.desc.colabs':'A collaborative engineering environment connecting people and AI agents around shared Git workspaces, role-based capabilities, task orchestration and auditable handoffs.','project.desc.mdm':'Identity and reference-data workflows with controlled entity creation, uniqueness checks, event-driven distribution and consumer-facing projections.','project.desc.fetcher':'A configurable ingestion and orchestration platform covering multiple source types, queues, rules, schema validation, storage and event delivery.','project.desc.sampling':'A quality-control service implementing ISO 2859-1 sampling logic, progressive lot handling and integration patterns for operational quality workflows.','project.desc.cloud':'Hands-on work with containerized services and platform components, including Kubernetes, Helm, Keycloak, Vault, Redis and Prometheus monitoring.',
+    'tools.eyebrow':'03 / Tools &amp; workflow','tools.title':'The tools behind<br>the work.','tools.intro':'Tools I use across planning, source control, delivery and AI-assisted engineering.','tools.pm':'Project management &amp; collaboration','tools.dev':'Development &amp; source control','tools.platform':'Platform &amp; AI','tools.note':'Tool familiarity varies by project and responsibility.',
+    'experience.eyebrow':'04 / Experience','experience.title':'Building and<br>evolving software.','experience.intro':'Professional software development experience since 2022, with work spanning application development, backend systems and technical platform concerns.','experience.date':'Oct 2022 — Present','experience.role':'Senior Full-Stack Developer','experience.desc':'Professional software development across web and business applications. Experience includes frontend and backend implementation, API and database integration, debugging, system design and delivery within collaborative engineering environments.','experience.focus':'Current focus','experience.focusTitle':'AI-assisted engineering &amp; platform development','experience.focusDesc':'Applying Claude Code in day-to-day development and exploring structured collaboration between developers, AI agents, Git workflows and enterprise engineering processes.',
+    'approach.eyebrow':'05 / How I work','approach.title':'Practical, structured,<br>delivery-focused.','approach.intro':'Good software is more than a working feature. It should be understandable, operable and ready to evolve.','approach.oneTitle':'Understand the problem','approach.one':'Clarify business needs, constraints and expected outcomes before choosing an implementation.','approach.twoTitle':'Design for change','approach.two':'Favor clear interfaces, modular boundaries, maintainable data models and explicit workflows.','approach.threeTitle':'Deliver responsibly','approach.three':'Use automation and AI tools pragmatically, with attention to testing, reliability and operational visibility.',
+    'contact.eyebrow':'06 / Contact','contact.title':'Have a project to build?','contact.copy':"I'm interested in remote opportunities, freelance missions and collaborations involving full-stack development, backend engineering, platform architecture and AI-enabled software delivery.",'contact.cta':"Let's connect on LinkedIn ↗",'footer.location':'Antananarivo, Madagascar'
+  },
+  fr: {
+    'nav.label':'Navigation principale','nav.about':'À propos','nav.work':'Projets','nav.tools':'Outils','nav.experience':'Expérience','nav.contact':'Contact','nav.availability':'Ouvert aux missions à distance',
+    'hero.eyebrow':'Développeur Full-Stack · Ingénierie logicielle · IA','hero.title':'Transformer la <span class="accent">complexité</span> en logiciels utiles.','hero.copy':'Je suis Rijaniaina Tendry, développeur Full-Stack basé à Antananarivo, Madagascar. Je conçois des plateformes web, des services backend et des workflows d’ingénierie, en privilégiant une architecture maintenable, une livraison pragmatique et le développement assisté par IA.','hero.cta':'Voir les réalisations','hero.linkedin':'Me contacter sur LinkedIn ↗','hero.status':'en cours : workflows distribués et outils assistés par IA','hero.scroll':'Défiler pour découvrir',
+    'metric.fullstack':'Du frontend au backend','metric.cloud':'Conteneurs et infrastructure','metric.ai':'Claude Code dans les workflows de développement',
+    'about.eyebrow':'01 / À propos','about.title':'Une approche globale<br>de l’ingénierie logicielle.','about.intro':'J’interviens sur le cycle de vie logiciel : compréhension du besoin, conception de l’architecture, développement, intégration des services et fiabilisation de la livraison.','about.lead':'J’aime construire des systèmes où besoins produit, architecture technique et opérations quotidiennes s’articulent clairement.','about.body':'Mon expérience couvre les applications web modernes, la conception d’API, les backends orientés données, les workflows distribués et l’infrastructure de plateformes. Je privilégie des responsabilités bien délimitées, une automatisation utile, l’observabilité et des bases de code évolutives. J’intègre également des outils d’IA comme Claude Code au développement, tout en gardant la maîtrise des décisions techniques et de la qualité.','skills.frontend':'Frontend &amp; interfaces','skills.backend':'Backend &amp; API','skills.data':'Données &amp; messagerie','skills.infra':'Infrastructure &amp; IA',
+    'work.eyebrow':'02 / Réalisations','work.title':'Plateformes, systèmes<br>&amp; ingénierie logicielle.','work.intro':'Une sélection de réalisations et de travaux techniques autour des plateformes, du traitement distribué, de la collaboration et de la qualité des données.','work.note':'Certaines fiches décrivent des travaux internes à l’entreprise ou des concepts personnels. Les détails confidentiels ne sont pas publiés.',
+    'project.type.platform':'Architecture de plateforme','project.type.ai':'IA &amp; collaboration','project.type.data':'Plateforme de données','project.type.workflow':'Orchestration de workflows','project.type.quality':'Ingénierie qualité','project.type.infra':'Infrastructure','project.personal':'Projet personnel','project.company':'Projet d’entreprise','project.idea':'Idée','project.progress':'En cours','project.done':'Terminé',
+    'project.desc.all':'Concept d’intranet modulaire organisé autour d’un Core central : cycle de vie des services, identité, découverte des services et interface dynamique indépendante des plugins.','project.desc.colabs':'Environnement de collaboration réunissant développeurs et agents IA autour d’espaces Git partagés, de rôles, de tâches orchestrées et de transferts auditables.','project.desc.mdm':'Workflows de gestion des identités et référentiels : création contrôlée, vérification d’unicité, diffusion événementielle et projections pour les systèmes consommateurs.','project.desc.fetcher':'Plateforme configurable d’ingestion et d’orchestration couvrant plusieurs sources, files d’attente, règles, validation de schémas, stockage et diffusion d’événements.','project.desc.sampling':'Service de contrôle qualité implémentant la logique d’échantillonnage ISO 2859-1, la gestion progressive des lots et l’intégration aux workflows opérationnels.','project.desc.cloud':'Travaux sur des services conteneurisés et des composants de plateforme : Kubernetes, Helm, Keycloak, Vault, Redis et supervision Prometheus.',
+    'tools.eyebrow':'03 / Outils &amp; méthodes','tools.title':'Les outils au cœur<br>de mon travail.','tools.intro':'Outils mobilisés pour la planification, la gestion du code, la livraison et le développement assisté par IA.','tools.pm':'Gestion de projet &amp; collaboration','tools.dev':'Développement &amp; gestion du code','tools.platform':'Plateforme &amp; IA','tools.note':'Le niveau de pratique dépend du projet et des responsabilités.',
+    'experience.eyebrow':'04 / Expérience','experience.title':'Concevoir et faire<br>évoluer des logiciels.','experience.intro':'Expérience professionnelle en développement logiciel depuis 2022, sur des applications métier, des systèmes backend et des plateformes techniques.','experience.date':'Oct. 2022 — Aujourd’hui','experience.role':'Développeur Senior Full-Stack','experience.desc':'Développement d’applications web et métier : implémentation frontend et backend, intégration d’API et de bases de données, débogage, conception technique et livraison au sein d’équipes d’ingénierie.','experience.focus':'Axes actuels','experience.focusTitle':'Ingénierie assistée par IA &amp; plateformes','experience.focusDesc':'Utilisation de Claude Code au quotidien et exploration de méthodes de collaboration structurées entre développeurs, agents IA, workflows Git et processus d’ingénierie.',
+    'approach.eyebrow':'05 / Méthode de travail','approach.title':'Pragmatique, structuré,<br>orienté livraison.','approach.intro':'Un bon logiciel ne se limite pas à une fonctionnalité opérationnelle : il doit être compréhensible, exploitable et évolutif.','approach.oneTitle':'Comprendre le besoin','approach.one':'Clarifier les objectifs métier, les contraintes et les résultats attendus avant de choisir une solution.','approach.twoTitle':'Prévoir les évolutions','approach.two':'Privilégier des interfaces claires, des modules bien séparés, des modèles de données maintenables et des workflows explicites.','approach.threeTitle':'Livrer avec rigueur','approach.three':'Utiliser l’automatisation et l’IA avec discernement, en prêtant attention aux tests, à la fiabilité et à l’observabilité.',
+    'contact.eyebrow':'06 / Contact','contact.title':'Un projet à construire ?','contact.copy':'Je suis ouvert aux opportunités à distance, aux missions freelance et aux collaborations en développement Full-Stack, ingénierie backend, architecture de plateformes et livraison logicielle assistée par IA.','contact.cta':'Échanger sur LinkedIn ↗','footer.location':'Antananarivo, Madagascar'
+  }
+};
+function applyPortfolioLanguage(language) {
+  const selected = portfolioTranslations[language] ? language : 'en';
+  document.documentElement.lang = selected;
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    const value = portfolioTranslations[selected][element.dataset.i18n];
+    if (typeof value === 'string') element.innerHTML = value;
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+    element.dataset.i18nAttr.split(',').forEach((mapping) => {
+      const [attribute,key] = mapping.split(':');
+      const value = portfolioTranslations[selected][key];
+      if (attribute && typeof value === 'string') element.setAttribute(attribute,value);
+    });
+  });
+  const toggle = document.getElementById('language-toggle');
+  if (toggle) {
+    toggle.textContent = selected === 'en' ? 'FR' : 'EN';
+    toggle.setAttribute('aria-label',selected === 'en' ? 'Passer en français' : 'Switch to English');
+  }
+  document.title = selected === 'fr' ? 'Rijaniaina Tendry — Développeur Full-Stack' : 'Rijaniaina Tendry — Full-Stack Developer';
+  try { localStorage.setItem('portfolio-language',selected); } catch (_) {}
+  window.dispatchEvent(new Event('portfolio:language'));
+}
+const languageToggle = document.getElementById('language-toggle');
+let savedLanguage = 'en';
+try { savedLanguage = localStorage.getItem('portfolio-language') || 'en'; } catch (_) {}
+applyPortfolioLanguage(savedLanguage === 'fr' ? 'fr' : 'en');
+if (languageToggle) languageToggle.addEventListener('click',() => applyPortfolioLanguage(document.documentElement.lang === 'en' ? 'fr' : 'en'));
+
+/* ============================================================
+   Reveal on scroll/* ============================================================
    Reveal on scroll
    ============================================================ */
 (function initReveal() {
@@ -1081,11 +1217,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   function render() {
     const { years, days, hours, minutes, seconds } = compute();
-    elapsedEl.textContent = `${years}y ${days}d`;
-    clockEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} · since 11/10/2022`;
+    const language = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+    elapsedEl.textContent = language === 'fr' ? `${years}a ${days}j` : `${years}y ${days}d`;
+    clockEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)} · ${language === 'fr' ? 'depuis le 11/10/2022' : 'since 11/10/2022'}`;
   }
 
   render();
+  window.addEventListener('portfolio:language',render);
   (function align() {
     const delay = 1000 - (Date.now() % 1000);
     setTimeout(function loop() {
