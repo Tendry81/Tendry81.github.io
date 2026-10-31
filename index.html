@@ -4,12 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Portfolio of Rijaniaina Tendry — Full-Stack Developer building reliable software, backend platforms and AI-enabled engineering workflows.">
+<meta name="author" content="Rijaniaina Tendry">
 <meta name="theme-color" content="#0e2433">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://tendry81.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tendry81.github.io/">
+<meta property="og:title" content="Rijaniaina Tendry — Full-Stack Developer">
+<meta property="og:description" content="Full-Stack Developer based in Antananarivo. Platforms, backend systems, distributed workflows and AI-assisted engineering.">
+<meta property="og:image" content="https://tendry81.github.io/assets/profile.webp">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rijaniaina Tendry — Full-Stack Developer">
+<meta name="twitter:description" content="Full-Stack Developer · platforms, backends, AI-assisted engineering.">
 <title>Rijaniaina Tendry — Full-Stack Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Skip link */
+.skip-link {
+  position: absolute; left: 16px; top: 12px; z-index: 100;
+  padding: 10px 16px; border-radius: 10px;
+  background: var(--site-primary); color: var(--site-on-primary);
+  font-weight: 600; font-size: 13px; text-decoration: none;
+  transform: translateY(-140%); transition: transform .2s;
+}
+.skip-link:focus { transform: translateY(0); outline: 2px solid var(--site-secondary); outline-offset: 3px; }
+
 :root {
   --site-primary: #0e2433;
   --site-primary-soft: #1b3a4d;
@@ -649,28 +672,41 @@ h1 {
 
 @media (max-width: 760px) {
   .container { width: min(100% - 34px, 600px); }
-  .nav { height: 68px; }
-  .nav-links { gap: 16px; font-size: 11px; }
-  .nav-links a:nth-child(2) { display: none; }
+  .nav { height: auto; min-height: 64px; flex-wrap: wrap; padding: 10px 0; row-gap: 0; }
+  .nav-toggle { display: grid; }
+  .nav-links {
+    display: none; width: 100%; order: 4; flex-direction: column;
+    gap: 0; padding: 8px 0 4px; border-top: 1px solid var(--site-border);
+    margin-top: 8px; font-size: 14px;
+  }
+  .nav.is-open .nav-links { display: flex; }
+  .nav-links a {
+    padding: 12px 4px; border-bottom: 1px solid var(--site-border);
+  }
+  .nav-links a:last-child { border-bottom: 0; }
+  .nav-links a.is-active::after { display: none; }
+  .nav-links a.is-active { color: var(--site-accent); font-weight: 600; }
   .availability { display: none; }
-  .hero { grid-template-columns: 1fr; padding: 56px 0 42px; gap: 24px; }
-  .profile-visual { min-height: 390px; margin-top: 2px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 0 36px; gap: 24px; min-height: 0; }
+  h1 { font-size: clamp(36px, 9vw, 52px); margin: 16px 0 18px; }
+  .profile-visual { min-height: 360px; margin-top: 2px; }
   .profile-frame { width: min(276px, 72%); }
   .profile-label { left: 0; bottom: 22px; }
   .profile-chip-one { top: 13%; right: 0; }
   .profile-chip-two { bottom: 17%; right: 0; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .metric { padding: 16px; }
-  .section { padding: 62px 0; }
+  .section { padding: 56px 0; }
   .section-head { display: block; }
-  .section-intro { margin-top: 20px; }
+  .section-intro { margin-top: 18px; }
   .about-grid { grid-template-columns: 1fr; gap: 18px; }
   .skill-groups, .project-grid, .approach-grid { grid-template-columns: 1fr; }
   .experience-item { grid-template-columns: 1fr; gap: 9px; }
-  .contact-panel { padding: 34px 26px; display: block; }
-  .contact-panel .btn { margin-top: 26px; }
-  .footer { flex-direction: column; }
+  .contact-panel { padding: 32px 22px; display: block; }
+  .contact-actions { margin-top: 22px; }
+  .footer { flex-direction: column; gap: 10px; text-align: center; }
   .scroll-indicator { display: none; }
+  .brand span:last-child { font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -686,12 +722,43 @@ h1 {
 
 /* Sticky navigation, project metadata and animated tool cards */
 #app { overflow: visible; }
-.nav { position: sticky; top: 0; z-index: 50; min-height: 72px; background: rgba(230,233,222,.91); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); box-shadow: 0 1px 0 rgba(10,25,34,.08); }
-.nav-links a { transition: color .2s,opacity .2s; }
+.nav { position: sticky; top: 0; z-index: 50; min-height: 72px; background: rgba(230,233,222,.91); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%); box-shadow: 0 1px 0 rgba(10,25,34,.08); gap: 12px; }
+.nav-links a { transition: color .2s, opacity .2s; position: relative; }
 .nav-links a:hover { opacity: .68; }
+.nav-links a.is-active { color: var(--site-on-background); opacity: 1; }
+.nav-links a.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -8px;
+  height: 2px; border-radius: 2px; background: var(--site-secondary);
+  box-shadow: 0 0 12px rgba(217,243,106,.55);
+}
 .language-toggle { flex: 0 0 auto; border: 1px solid var(--site-border-strong); color: var(--site-on-background); background: rgba(255,255,255,.25); border-radius: 9px; min-width: 42px; padding: 9px 11px; font: 700 11px var(--font-body); letter-spacing: .08em; cursor: pointer; transition: transform .2s,background .2s,border-color .2s; }
 .language-toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,.55); border-color: var(--site-accent); }
+.nav-toggle {
+  display: none; flex: 0 0 auto; width: 42px; height: 42px;
+  border: 1px solid var(--site-border-strong); border-radius: 10px;
+  background: rgba(255,255,255,.35); cursor: pointer; padding: 0;
+  place-items: center; transition: background .2s, border-color .2s;
+}
+.nav-toggle:hover { background: rgba(255,255,255,.6); border-color: var(--site-accent); }
+.nav-toggle-bars {
+  display: block; width: 18px; height: 2px; background: var(--site-on-background);
+  position: relative; border-radius: 2px;
+}
+.nav-toggle-bars::before, .nav-toggle-bars::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px;
+  background: var(--site-on-background); border-radius: 2px; transition: transform .2s;
+}
+.nav-toggle-bars::before { top: -6px; }
+.nav-toggle-bars::after { top: 6px; }
+.nav.is-open .nav-toggle-bars { background: transparent; }
+.nav.is-open .nav-toggle-bars::before { top: 0; transform: rotate(45deg); }
+.nav.is-open .nav-toggle-bars::after { top: 0; transform: rotate(-45deg); }
 .nav, #about, #work, #tools, #experience, #contact { scroll-margin-top: 90px; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.contact-actions .btn-secondary { border-color: rgba(255,255,255,.28); color: inherit; }
+.project { display: flex; flex-direction: column; }
+.project .tags { margin-top: auto; padding-top: 14px; }
+
 .project { transform-style: preserve-3d; }
 .project::before { content: ""; position: absolute; inset: 0 auto 0 -130%; width: 72%; pointer-events: none; background: linear-gradient(105deg,transparent,rgba(217,243,106,.13),transparent); transform: skewX(-18deg); transition: left .7s ease; z-index: 2; }
 .project:hover::before { left: 155%; }
@@ -699,11 +766,18 @@ h1 {
 .project-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin: 13px 0 0; position: relative; z-index: 3; }
 .ownership-badge, .progress-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 999px; font: 700 9px var(--font-body); letter-spacing: .045em; text-transform: uppercase; }
 .ownership-badge::before, .progress-badge::before { content: ""; width: 6px; height: 6px; flex: 0 0 auto; border-radius: 50%; background: currentColor; }
-.ownership-personal { color: #c8dcff; background: rgba(95,145,220,.16); border: 1px solid rgba(145,185,245,.3); }
-.ownership-company { color: #e1f69a; background: rgba(217,243,106,.12); border: 1px solid rgba(217,243,106,.27); }
-.status-idea { color: #ffd58a; background: rgba(255,190,90,.13); border: 1px solid rgba(255,190,90,.25); }
-.status-progress { color: #9ed6ff; background: rgba(95,175,235,.13); border: 1px solid rgba(95,175,235,.25); }
-.status-done { color: #9be1b3; background: rgba(98,167,123,.14); border: 1px solid rgba(98,167,123,.28); }
+.ownership-personal { color: #2a4f8a; background: rgba(95,145,220,.14); border: 1px solid rgba(95,145,220,.28); }
+.ownership-company { color: #3d5218; background: rgba(217,243,106,.18); border: 1px solid rgba(74,101,31,.28); }
+.status-idea { color: #8a5a12; background: rgba(255,190,90,.16); border: 1px solid rgba(200,140,40,.28); }
+.status-progress { color: #1e5f8a; background: rgba(95,175,235,.14); border: 1px solid rgba(70,140,200,.28); }
+.status-done { color: #2d6b45; background: rgba(98,167,123,.14); border: 1px solid rgba(70,130,90,.28); }
+@media (prefers-color-scheme: dark) {
+  .ownership-personal { color: #c8dcff; background: rgba(95,145,220,.16); border-color: rgba(145,185,245,.3); }
+  .ownership-company { color: #e1f69a; background: rgba(217,243,106,.12); border-color: rgba(217,243,106,.27); }
+  .status-idea { color: #ffd58a; background: rgba(255,190,90,.13); border-color: rgba(255,190,90,.25); }
+  .status-progress { color: #9ed6ff; background: rgba(95,175,235,.13); border-color: rgba(95,175,235,.25); }
+  .status-done { color: #9be1b3; background: rgba(98,167,123,.14); border-color: rgba(98,167,123,.28); }
+}
 .tools-section { background: color-mix(in srgb,var(--site-background) 68%,white); }
 .tools-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
 .tool-category { position: relative; padding: 24px; border: 1px solid var(--site-border); border-radius: var(--radius-md); background: var(--site-surface); box-shadow: var(--shadow-sm); transition: transform .28s,box-shadow .28s,border-color .28s; overflow: hidden; }
@@ -738,6 +812,7 @@ h1 {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 <div id="app">
   <!-- Background layers -->
   <div class="bg-grid" aria-hidden="true"></div>
@@ -745,11 +820,11 @@ h1 {
   <canvas id="neural-canvas" aria-hidden="true"></canvas>
   <div class="code-float" id="code-float" aria-hidden="true"></div>
 
-  <header class="container nav">
+  <header class="container nav" id="site-nav">
     <a class="brand" href="#top" aria-label="Rijaniaina Tendry home">
-      <span class="brand-mark">RT</span><span>RIJANIaina TENDRY</span>
+      <span class="brand-mark">RT</span><span>Rijaniaina Tendry</span>
     </a>
-    <nav class="nav-links" aria-label="Main navigation" data-i18n-attr="aria-label:nav.label">
+    <nav class="nav-links" id="nav-links" aria-label="Main navigation" data-i18n-attr="aria-label:nav.label">
       <a href="#about" data-i18n="nav.about">About</a>
       <a href="#work" data-i18n="nav.work">Projects</a>
       <a href="#tools" data-i18n="nav.tools">Tools</a>
@@ -758,6 +833,9 @@ h1 {
     </nav>
     <div class="availability"><span class="dot"></span><span data-i18n="nav.availability">Open to remote opportunities</span></div>
     <button class="language-toggle" id="language-toggle" type="button" aria-label="Passer en français">FR</button>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
   </header>
 
   <main id="top">
@@ -786,7 +864,7 @@ h1 {
       <aside class="profile-visual reveal" aria-label="Profile portrait">
         <div class="profile-halo" aria-hidden="true"></div>
         <div class="profile-frame">
-          <img src="https://tendry81.github.io/assets/profile.webp" alt="Portrait of Rijaniaina Tendry" loading="eager" decoding="async">
+          <img src="assets/profile.webp" alt="Portrait of Rijaniaina Tendry" width="326" height="326" loading="eager" decoding="async">
         </div>
         <div class="profile-label">
           <span class="profile-label-dot"></span>
@@ -1071,13 +1149,16 @@ h1 {
         <div>
           <div class="eyebrow" data-i18n="contact.eyebrow">06 / Contact</div>
           <h2 data-i18n="contact.title">Have a project to build?</h2>
-          <p data-i18n="contact.copy">I'm interested in remote opportunities, freelance missions and collaborations
-            involving full-stack development, backend engineering, platform architecture
-            and AI-enabled software delivery.</p>
+          <p data-i18n="contact.copy">I'm open to remote roles, freelance missions and collaborations in full-stack development, backend platforms, data workflows and AI-assisted delivery.</p>
         </div>
-        <a class="btn" data-i18n="contact.cta" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">
-          Let's connect on LinkedIn ↗
-        </a>
+        <div class="contact-actions">
+          <a class="btn btn-primary" data-i18n="contact.cta" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">
+            Let's connect on LinkedIn ↗
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/Tendry81" target="_blank" rel="noreferrer" data-i18n="contact.github">
+            GitHub ↗
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -1106,7 +1187,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const portfolioTranslations = {
   en: {
     'nav.label':'Main navigation','nav.about':'About','nav.work':'Projects','nav.tools':'Tools','nav.experience':'Experience','nav.contact':'Contact','nav.availability':'Open to remote opportunities',
-    'hero.eyebrow':'Full-Stack Developer · Engineering · AI','hero.title':'Building software that makes <span class="accent">complexity</span> useful.','hero.copy':"I'm Rijaniaina Tendry, a Full-Stack Developer based in Antananarivo, Madagascar. I design and build web platforms, backend services and engineering workflows — with a focus on maintainable architecture, practical delivery and AI-assisted development.",'hero.cta':'Explore selected work','hero.linkedin':'Connect on LinkedIn ↗','hero.status':'currently building: distributed workflows &amp; AI-assisted tooling','hero.scroll':'Scroll to explore',
+    'hero.eyebrow':'Full-Stack Developer · Engineering · AI','hero.title':'Building software that makes <span class="accent">complexity</span> useful.','hero.copy':"I'm Rijaniaina Tendry, a Full-Stack Developer in Antananarivo, Madagascar. I design web platforms, backend services and engineering workflows — with a focus on clear architecture, reliable delivery and practical AI-assisted development.",'hero.cta':'Explore selected work','hero.linkedin':'Connect on LinkedIn ↗','hero.status':'currently building: distributed workflows &amp; AI-assisted tooling','hero.scroll':'Scroll to explore',
     'metric.fullstack':'Frontend to backend delivery','metric.cloud':'Containers and infrastructure','metric.ai':'Claude Code in engineering workflows',
     'about.eyebrow':'01 / About','about.title':'Engineering with<br>the whole system in mind.','about.intro':'I work across the software lifecycle: understanding a problem, shaping the architecture, implementing features, integrating services and supporting reliable delivery.','about.lead':'I enjoy building systems where product requirements, technical architecture and day-to-day operations fit together.','about.body':'My work spans modern web applications, API design, data-intensive backends, distributed workflows and platform infrastructure. I value clear boundaries, useful automation, observability and codebases that teams can evolve. I also use AI coding tools such as Claude Code as part of practical software development workflows, while keeping engineering decisions and quality controls in focus.','skills.frontend':'Frontend &amp; UI','skills.backend':'Backend &amp; APIs','skills.data':'Data &amp; Messaging','skills.infra':'Infrastructure &amp; AI',
     'work.eyebrow':'02 / Selected work','work.title':'Systems, platforms<br>&amp; engineering ideas.','work.intro':'A selection of product and technical work that reflects the kinds of problems I work on: platform foundations, distributed processing, collaboration and quality systems.','work.note':'Some entries describe internal engineering work or personal product concepts. Confidential implementation details are intentionally not published.',
@@ -1115,7 +1196,7 @@ const portfolioTranslations = {
     'tools.eyebrow':'03 / Tools &amp; workflow','tools.title':'The tools behind<br>the work.','tools.intro':'Tools I use across planning, source control, delivery and AI-assisted engineering.','tools.pm':'Project management &amp; collaboration','tools.dev':'Development &amp; source control','tools.platform':'Platform &amp; AI','tools.note':'Tool familiarity varies by project and responsibility.',
     'experience.eyebrow':'04 / Experience','experience.title':'Building and<br>evolving software.','experience.intro':'Professional software development experience since 2022, with work spanning application development, backend systems and technical platform concerns.','experience.date':'Oct 2022 — Present','experience.role':'Senior Full-Stack Developer','experience.desc':'Professional software development across web and business applications. Experience includes frontend and backend implementation, API and database integration, debugging, system design and delivery within collaborative engineering environments.','experience.focus':'Current focus','experience.focusTitle':'AI-assisted engineering &amp; platform development','experience.focusDesc':'Applying Claude Code in day-to-day development and exploring structured collaboration between developers, AI agents, Git workflows and enterprise engineering processes.',
     'approach.eyebrow':'05 / How I work','approach.title':'Practical, structured,<br>delivery-focused.','approach.intro':'Good software is more than a working feature. It should be understandable, operable and ready to evolve.','approach.oneTitle':'Understand the problem','approach.one':'Clarify business needs, constraints and expected outcomes before choosing an implementation.','approach.twoTitle':'Design for change','approach.two':'Favor clear interfaces, modular boundaries, maintainable data models and explicit workflows.','approach.threeTitle':'Deliver responsibly','approach.three':'Use automation and AI tools pragmatically, with attention to testing, reliability and operational visibility.',
-    'contact.eyebrow':'06 / Contact','contact.title':'Have a project to build?','contact.copy':"I'm interested in remote opportunities, freelance missions and collaborations involving full-stack development, backend engineering, platform architecture and AI-enabled software delivery.",'contact.cta':"Let's connect on LinkedIn ↗",'footer.location':'Antananarivo, Madagascar'
+    'contact.eyebrow':'06 / Contact','contact.title':'Have a project to build?','contact.copy':"I'm open to remote roles, freelance missions and collaborations in full-stack development, backend platforms, data workflows and AI-assisted delivery.",'contact.cta':"Let's connect on LinkedIn ↗",'contact.github':'GitHub ↗','footer.location':'Antananarivo, Madagascar'
   },
   fr: {
     'nav.label':'Navigation principale','nav.about':'À propos','nav.work':'Projets','nav.tools':'Outils','nav.experience':'Expérience','nav.contact':'Contact','nav.availability':'Ouvert aux missions à distance',
@@ -1128,7 +1209,7 @@ const portfolioTranslations = {
     'tools.eyebrow':'03 / Outils &amp; méthodes','tools.title':'Les outils au cœur<br>de mon travail.','tools.intro':'Outils mobilisés pour la planification, la gestion du code, la livraison et le développement assisté par IA.','tools.pm':'Gestion de projet &amp; collaboration','tools.dev':'Développement &amp; gestion du code','tools.platform':'Plateforme &amp; IA','tools.note':'Le niveau de pratique dépend du projet et des responsabilités.',
     'experience.eyebrow':'04 / Expérience','experience.title':'Concevoir et faire<br>évoluer des logiciels.','experience.intro':'Expérience professionnelle en développement logiciel depuis 2022, sur des applications métier, des systèmes backend et des plateformes techniques.','experience.date':'Oct. 2022 — Aujourd’hui','experience.role':'Développeur Senior Full-Stack','experience.desc':'Développement d’applications web et métier : implémentation frontend et backend, intégration d’API et de bases de données, débogage, conception technique et livraison au sein d’équipes d’ingénierie.','experience.focus':'Axes actuels','experience.focusTitle':'Ingénierie assistée par IA &amp; plateformes','experience.focusDesc':'Utilisation de Claude Code au quotidien et exploration de méthodes de collaboration structurées entre développeurs, agents IA, workflows Git et processus d’ingénierie.',
     'approach.eyebrow':'05 / Méthode de travail','approach.title':'Pragmatique, structuré,<br>orienté livraison.','approach.intro':'Un bon logiciel ne se limite pas à une fonctionnalité opérationnelle : il doit être compréhensible, exploitable et évolutif.','approach.oneTitle':'Comprendre le besoin','approach.one':'Clarifier les objectifs métier, les contraintes et les résultats attendus avant de choisir une solution.','approach.twoTitle':'Prévoir les évolutions','approach.two':'Privilégier des interfaces claires, des modules bien séparés, des modèles de données maintenables et des workflows explicites.','approach.threeTitle':'Livrer avec rigueur','approach.three':'Utiliser l’automatisation et l’IA avec discernement, en prêtant attention aux tests, à la fiabilité et à l’observabilité.',
-    'contact.eyebrow':'06 / Contact','contact.title':'Un projet à construire ?','contact.copy':'Je suis ouvert aux opportunités à distance, aux missions freelance et aux collaborations en développement Full-Stack, ingénierie backend, architecture de plateformes et livraison logicielle assistée par IA.','contact.cta':'Échanger sur LinkedIn ↗','footer.location':'Antananarivo, Madagascar'
+    'contact.eyebrow':'06 / Contact','contact.title':'Un projet à construire ?','contact.copy':'Je suis ouvert aux missions à distance, au freelance et aux collaborations en développement full-stack, plateformes backend, workflows data et livraison assistée par IA.','contact.cta':'Échanger sur LinkedIn ↗','contact.github':'GitHub ↗','footer.location':'Antananarivo, Madagascar'
   }
 };
 function applyPortfolioLanguage(language) {
@@ -1161,7 +1242,68 @@ applyPortfolioLanguage(savedLanguage === 'fr' ? 'fr' : 'en');
 if (languageToggle) languageToggle.addEventListener('click',() => applyPortfolioLanguage(document.documentElement.lang === 'en' ? 'fr' : 'en'));
 
 /* ============================================================
-   Reveal on scroll/* ============================================================
+   Mobile navigation
+   ============================================================ */
+(function initMobileNav() {
+  const nav = document.getElementById('site-nav');
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (!nav || !toggle || !links) return;
+
+  function closeMenu() {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', document.documentElement.lang === 'fr' ? 'Ouvrir le menu' : 'Open menu');
+  }
+  function openMenu() {
+    nav.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', document.documentElement.lang === 'fr' ? 'Fermer le menu' : 'Close menu');
+  }
+
+  toggle.addEventListener('click', () => {
+    if (nav.classList.contains('is-open')) closeMenu();
+    else openMenu();
+  });
+  links.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('portfolio:language', () => {
+    const open = nav.classList.contains('is-open');
+    toggle.setAttribute('aria-label', open
+      ? (document.documentElement.lang === 'fr' ? 'Fermer le menu' : 'Close menu')
+      : (document.documentElement.lang === 'fr' ? 'Ouvrir le menu' : 'Open menu'));
+  });
+})();
+
+/* ============================================================
+   Active section highlight
+   ============================================================ */
+(function initActiveNav() {
+  const sections = ['about', 'work', 'tools', 'experience', 'contact']
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const linkMap = new Map();
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach((a) => {
+    const id = a.getAttribute('href').slice(1);
+    linkMap.set(id, a);
+  });
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+
+  const state = new Map();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      state.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+    });
+    let bestId = null, bestRatio = 0;
+    state.forEach((ratio, id) => {
+      if (ratio > bestRatio) { bestRatio = ratio; bestId = id; }
+    });
+    linkMap.forEach((a, id) => a.classList.toggle('is-active', id === bestId && bestRatio > 0));
+  }, { threshold: [0, 0.2, 0.4, 0.6], rootMargin: '-20% 0px -45% 0px' });
+  sections.forEach((s) => io.observe(s));
+})();
+
+/* ============================================================
    Reveal on scroll
    ============================================================ */
 (function initReveal() {
