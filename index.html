@@ -7,29 +7,313 @@
 <meta name="theme-color" content="#101820">
 <title>Rijaniaina Tendry — Full-Stack Developer</title>
 <style>
-:root{--navy:#172b3a;--lime:#d9f36a;--paper:#f4f5f1;--ink:#172b3a;--muted:#657078;--line:#d9ded8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit}.container{width:min(1120px,calc(100% - 48px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font-weight:800;letter-spacing:-.04em;text-decoration:none}.mark{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:10px;background:var(--lime);border-radius:10px}.navlinks{display:flex;gap:25px;font-size:13px}.navlinks a{text-decoration:none}.status{font-size:12px;color:var(--muted)}.status:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#62a77b;margin-right:8px}.hero{padding:100px 0 85px;display:grid;grid-template-columns:1.35fr .65fr;gap:60px;align-items:center}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--muted)}h1{font-size:clamp(44px,6.5vw,78px);line-height:1;letter-spacing:-.075em;margin:22px 0 26px}.accent{color:#71843b}.lead{max-width:610px;color:#56636b;font-size:17px;line-height:1.8}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-block;padding:13px 18px;border-radius:11px;font-size:13px;font-weight:750;text-decoration:none}.primary{background:var(--navy);color:white}.secondary{border:1px solid #b8c0bd}.hero-card{background:var(--navy);color:white;border-radius:22px;padding:30px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between}.hero-card .eyebrow{color:var(--lime)}.hero-card h2{font-size:28px;line-height:1.15;letter-spacing:-.05em;margin:35px 0 10px}.hero-card p{color:#d5dde2;font-size:13px}.card-foot{border-top:1px solid #ffffff30;padding-top:14px;font-size:11px;color:#c3ced5;display:flex;justify-content:space-between;gap:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:24px 0;border-block:1px solid var(--line)}.metric strong{display:block;font-size:23px;letter-spacing:-.05em}.metric span{font-size:11px;color:var(--muted)}.section{padding:88px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:36px}.section-head h2{font-size:clamp(32px,4vw,46px);letter-spacing:-.06em;line-height:1.08;margin:12px 0 0}.intro{max-width:430px;font-size:14px;color:#657078;line-height:1.75}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}.about-lead{font-size:23px;line-height:1.45;letter-spacing:-.03em}.about-body{font-size:14px;color:#5d6970;line-height:1.9}.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}.skill{border:1px solid var(--line);border-radius:14px;padding:20px}.skill h3{font-size:13px;margin:0 0 12px}.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{font-size:11px;padding:6px 9px;border-radius:6px;background:#e8ece6;color:#46535a}.projects{background:var(--navy);color:white}.projects .eyebrow,.projects .intro{color:#c4d0d8}.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project{padding:25px;border:1px solid #ffffff30;border-radius:16px;min-height:235px;display:flex;flex-direction:column}.project-type{font-size:10px;color:var(--lime);text-transform:uppercase;letter-spacing:.12em;font-weight:800}.project h3{font-size:23px;letter-spacing:-.04em;margin:25px 0 8px}.project p{font-size:13px;color:#c5d0d7;line-height:1.75}.project .tags{margin-top:auto}.project .tag{background:#ffffff14;color:#d8e0e5}.note{font-size:11px;color:#aebdc6;margin-top:18px}.experience-list{border-top:1px solid var(--line)}.experience-item{display:grid;grid-template-columns:190px 1fr;gap:35px;padding:24px 0;border-bottom:1px solid var(--line)}.experience-date{font-size:12px;color:var(--muted)}.experience-item h3{font-size:18px;margin:0 0 7px}.experience-item p{font-size:13px;color:#657078;margin:0}.approach{background:#e8ecdf}.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.approach-item{border-top:2px solid var(--navy);padding-top:17px}.approach-item strong{font-size:15px}.approach-item p{font-size:13px;color:#53605c}.contact{padding:80px 0}.contact-panel{background:var(--lime);border-radius:22px;padding:48px;display:flex;justify-content:space-between;align-items:end;gap:28px}.contact-panel h2{font-size:clamp(36px,5vw,58px);line-height:1;letter-spacing:-.07em;margin:14px 0}.contact-panel p{max-width:490px;font-size:14px;color:#40502b}.footer{border-top:1px solid var(--line);padding:22px 0;display:flex;justify-content:space-between;gap:18px;font-size:11px;color:var(--muted)}.footer a{text-decoration:none}@media(max-width:760px){.container{width:calc(100% - 34px)}.navlinks{gap:12px;font-size:11px}.navlinks a:nth-child(2),.status{display:none}.hero{grid-template-columns:1fr;gap:32px;padding:65px 0}.metrics{grid-template-columns:repeat(2,1fr)}.section{padding:65px 0}.section-head{display:block}.intro{margin-top:18px}.about-grid{grid-template-columns:1fr;gap:15px}.skills,.project-grid,.approach-grid{grid-template-columns:1fr}.experience-item{grid-template-columns:1fr;gap:7px}.contact-panel{display:block;padding:30px 24px}.contact-panel .btn{margin-top:12px}.footer{flex-direction:column}}
+:root {
+  --site-primary: #172b3a;
+  --site-secondary: #d9f36a;
+  --site-background: #f4f5f1;
+  --site-on-primary: #f7f8f5;
+  --site-on-secondary: #172b3a;
+  --site-on-background: #172b3a;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+a { color: inherit; }
+.container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+.nav { height: 76px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid color-mix(in srgb, var(--site-on-background) 13%, transparent); }
+.brand { display: flex; align-items: center; gap: 11px; font-weight: 750; letter-spacing: -.04em; text-decoration: none; }
+.brand-mark { width: 34px; height: 34px; display: grid; place-items: center; background: var(--site-secondary); color: var(--site-on-secondary); border-radius: 10px; font-size: 13px; font-weight: 900; }
+.nav-links { display: flex; gap: 28px; align-items: center; font-size: 13px; color: color-mix(in srgb, var(--site-on-background) 72%, transparent); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover, .text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.availability { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; color: color-mix(in srgb, var(--site-on-background) 72%, transparent); }
+.dot { width: 7px; height: 7px; background: #62a77b; border-radius: 50%; box-shadow: 0 0 0 4px #62a77b20; }
+.hero { padding: calc(100px * var(--site-spacing-scale)) 0 calc(90px * var(--site-spacing-scale)); display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: center; }
+.eyebrow { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 800; color: color-mix(in srgb, var(--site-on-background) 58%, transparent); }
+h1,h2,h3,p { margin-top: 0; }
+h1 { font-family: var(--site-font-heading); font-size: clamp(44px, 6.5vw, calc(78px * var(--site-heading-scale))); line-height: .99; letter-spacing: -.075em; max-width: 760px; margin: 22px 0 26px; font-weight: 760; }
+.accent { color: #6b7d35; }
+.hero-copy { max-width: 610px; color: color-mix(in srgb, var(--site-on-background) 72%, transparent); font-size: 17px; line-height: 1.8; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 19px; border-radius: calc(12px * var(--site-radius-scale)); font-size: 13px; font-weight: 750; text-decoration: none; transition: transform .2s, background .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--site-primary); color: var(--site-on-primary); }
+.btn-secondary { border: 1px solid color-mix(in srgb, var(--site-on-background) 22%, transparent); }
+.hero-card { background: var(--site-primary); color: var(--site-on-primary); border-radius: calc(22px * var(--site-radius-scale)); padding: 30px; min-height: 300px; position: relative; overflow: hidden; }
+.hero-card:after { content: ""; position: absolute; width: 210px; height: 210px; border: 1px solid #ffffff25; border-radius: 50%; right: -80px; top: -75px; box-shadow: 0 0 0 25px #ffffff08, 0 0 0 55px #ffffff06; opacity: var(--site-decoration-opacity); }
+.card-kicker { color: #d9f36a; font-size: 11px; text-transform: uppercase; letter-spacing: .15em; font-weight: 800; }
+.hero-card h2 { font-size: 27px; letter-spacing: -.05em; line-height: 1.1; margin: 48px 0 14px; max-width: 260px; }
+.hero-card p { color: #d5dde2; line-height: 1.7; font-size: 13px; max-width: 280px; }
+.card-foot { position: absolute; bottom: 25px; left: 30px; right: 30px; display: flex; justify-content: space-between; border-top: 1px solid #ffffff2b; padding-top: 15px; font-size: 11px; color: #c3ced5; }
+.metrics { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid color-mix(in srgb, var(--site-on-background) 16%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--site-on-background) 16%, transparent); padding: 25px 0; gap: 20px; }
+.metric strong { display: block; font-size: 25px; letter-spacing: -.06em; }
+.metric span { font-size: 11px; color: color-mix(in srgb, var(--site-on-background) 60%, transparent); }
+.section { padding: calc(92px * var(--site-spacing-scale)) 0; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 38px; }
+.section-head h2 { font-size: clamp(32px, 4vw, calc(46px * var(--site-heading-scale))); letter-spacing: -.065em; line-height: 1.05; margin: 13px 0 0; }
+.section-intro { max-width: 430px; font-size: 14px; line-height: 1.75; color: color-mix(in srgb, var(--site-on-background) 68%, transparent); margin: 0; }
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; }
+.about-lead { font-size: 23px; line-height: 1.45; letter-spacing: -.035em; }
+.about-body { font-size: 14px; line-height: 1.9; color: color-mix(in srgb, var(--site-on-background) 70%, transparent); }
+.skill-groups { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 35px; }
+.skill-group { border: 1px solid color-mix(in srgb, var(--site-on-background) 15%, transparent); border-radius: calc(14px * var(--site-radius-scale)); padding: 21px; }
+.skill-group h3 { font-size: 13px; margin-bottom: 14px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag { font-size: 11px; padding: 7px 9px; border-radius: 6px; background: color-mix(in srgb, var(--site-on-background) 7%, transparent); color: color-mix(in srgb, var(--site-on-background) 78%, transparent); }
+.projects { background: var(--site-primary); color: var(--site-on-primary); }
+.projects .eyebrow, .projects .section-intro { color: #c4d0d8; }
+.project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.project { padding: 27px; border: 1px solid #ffffff28; border-radius: calc(16px * var(--site-radius-scale)); min-height: 250px; display: flex; flex-direction: column; transition: background .2s, transform .2s; }
+.project:hover { background: #ffffff0b; transform: translateY(-3px); }
+.project-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.project-type { font-size: 10px; color: #d9f36a; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; }
+.project-index { font-size: 11px; color: #9cabb5; }
+.project h3 { font-size: 24px; letter-spacing: -.05em; margin: 28px 0 10px; }
+.project p { color: #c5d0d7; font-size: 13px; line-height: 1.75; max-width: 480px; margin-bottom: 20px; }
+.project .tags { margin-top: auto; }
+.project .tag { background: #ffffff12; color: #d8e0e5; }
+.note { font-size: 11px; color: #9fb0bb; margin-top: 18px; line-height: 1.6; }
+.experience-list { border-top: 1px solid color-mix(in srgb, var(--site-on-background) 17%, transparent); }
+.experience-item { display: grid; grid-template-columns: 190px 1fr; gap: 35px; padding: 25px 0; border-bottom: 1px solid color-mix(in srgb, var(--site-on-background) 17%, transparent); }
+.experience-date { font-size: 12px; color: color-mix(in srgb, var(--site-on-background) 58%, transparent); }
+.experience-item h3 { font-size: 18px; margin: 0 0 8px; letter-spacing: -.03em; }
+.experience-item p { font-size: 13px; line-height: 1.75; color: color-mix(in srgb, var(--site-on-background) 68%, transparent); margin: 0; }
+.approach { background: #e8ecdf; color: #172b3a; }
+.approach-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.approach-item { border-top: 2px solid #172b3a; padding-top: 18px; }
+.approach-item strong { font-size: 15px; display: block; margin-bottom: 10px; }
+.approach-item p { font-size: 13px; line-height: 1.75; color: #4e5b5e; margin: 0; }
+.contact { padding: 90px 0; }
+.contact-panel { background: var(--site-secondary); color: var(--site-on-secondary); border-radius: calc(22px * var(--site-radius-scale)); padding: 54px; display: flex; justify-content: space-between; align-items: end; gap: 30px; }
+.contact-panel h2 { font-size: clamp(36px,5vw,58px); letter-spacing: -.07em; line-height: 1; max-width: 600px; margin: 15px 0 15px; }
+.contact-panel p { color: #40502b; font-size: 14px; line-height: 1.7; max-width: 490px; margin: 0; }
+.contact-panel .btn { background: var(--site-primary); color: var(--site-on-primary); white-space: nowrap; }
+.footer { border-top: 1px solid color-mix(in srgb, var(--site-on-background) 16%, transparent); padding: 23px 0; display: flex; justify-content: space-between; gap: 20px; font-size: 11px; color: color-mix(in srgb, var(--site-on-background) 58%, transparent); }
+.footer a { text-decoration: none; }
+@media (prefers-color-scheme: dark) {
+  body { background: #101820; }
+  #app { --site-background: #101820; --site-on-background: #edf1ed; }
+  .accent { color: #d9f36a; }
+  .tag { background: #ffffff12; }
+  .approach { background: #26352e; color: #edf1ed; }
+  .approach-item { border-color: #d9f36a; }
+  .approach-item p { color: #c7d2c8; }
+  .contact-panel p { color: #344324; }
+}
+@media (max-width: 760px) {
+  .container { width: min(100% - 34px, 600px); }
+  .nav { height: 66px; }
+  .nav-links { gap: 14px; font-size: 11px; }
+  .nav-links a:nth-child(2) { display: none; }
+  .availability { display: none; }
+  .hero { grid-template-columns: 1fr; gap: 35px; padding: 70px 0; }
+  .hero-card { min-height: 260px; }
+  .metrics { grid-template-columns: repeat(2,1fr); row-gap: 22px; }
+  .section { padding: 66px 0; }
+  .section-head { display: block; }
+  .section-intro { margin-top: 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 15px; }
+  .skill-groups, .project-grid, .approach-grid { grid-template-columns: 1fr; }
+  .experience-item { grid-template-columns: 1fr; gap: 9px; }
+  .contact-panel { padding: 32px 25px; display: block; }
+  .contact-panel .btn { margin-top: 25px; }
+  .footer { flex-direction: column; }
+}
+/* Refined portfolio layout and low-motion ambient background */
+body { background: var(--site-background); line-height: 1.7; }
+#app { position: relative; isolation: isolate; background: transparent; }
+#app > header, #app > main, #app > footer { position: relative; z-index: 1; }
+.ambient-background { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background-image: linear-gradient(rgba(23,43,58,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(23,43,58,.018) 1px,transparent 1px); background-size: 54px 54px; }
+.ambient-background::before, .ambient-background::after { content: ""; position: absolute; width: 48vw; aspect-ratio: 1; border-radius: 50%; filter: blur(85px); opacity: .16; animation: ambient-drift 26s ease-in-out infinite alternate; }
+.ambient-background::before { top: -23vw; left: -15vw; background: radial-gradient(circle,#8bb8ee 0%,#c7e7b3 32%,transparent 70%); }
+.ambient-background::after { right: -18vw; bottom: -24vw; background: radial-gradient(circle,#a7c9ee 0%,#d9f36a 28%,transparent 70%); animation-delay: -9s; animation-duration: 34s; }
+@keyframes ambient-drift { from { transform: translate3d(0,0,0) scale(.94); } to { transform: translate3d(7vw,4vh,0) scale(1.08); } }
+.nav { height: 82px; border-bottom-color: color-mix(in srgb,var(--site-on-background) 11%,transparent); }
+.brand { letter-spacing: -.055em; }
+.brand-mark { border-radius: 11px; box-shadow: 0 7px 20px #d9f36a35; }
+.nav-links { gap: 30px; font-weight: 600; }
+.hero { grid-template-columns: minmax(0,1.12fr) minmax(310px,.88fr); gap: clamp(28px,5vw,70px); padding: 78px 0 64px; min-height: 580px; }
+.eyebrow { letter-spacing: .18em; }
+h1 { font-size: clamp(48px,5.8vw,74px); line-height: 1.02; letter-spacing: -.075em; max-width: 670px; }
+.accent { color: #718b3b; }
+.hero-copy { max-width: 590px; font-size: 16px; line-height: 1.85; }
+.btn { padding: 14px 20px; border-radius: 10px; }
+.btn-primary { box-shadow: 0 10px 24px #172b3a1b; }
+.profile-visual { position: relative; min-height: 475px; display: grid; place-items: center; isolation: isolate; }
+.profile-halo { position: absolute; z-index: -1; width: min(390px,92%); aspect-ratio: 1; border: 1px solid color-mix(in srgb,var(--site-primary) 20%,transparent); border-radius: 50%; animation: halo-turn 42s linear infinite; }
+.profile-halo::before, .profile-halo::after { content: ""; position: absolute; border: 1px solid color-mix(in srgb,var(--site-primary) 13%,transparent); border-radius: 50%; }
+.profile-halo::before { inset: 18px; }
+.profile-halo::after { inset: -14px; border-style: dashed; opacity: .65; }
+@keyframes halo-turn { to { transform: rotate(360deg); } }
+.profile-frame { position: relative; width: min(326px,78%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #e7eceb; border: 8px solid #fff; box-shadow: 0 28px 70px #172b3a24,0 0 0 1px #172b3a12; }
+.profile-frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px #172b3a12; pointer-events: none; }
+.profile-frame img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.profile-label { position: absolute; left: 1%; bottom: 43px; display: flex; align-items: center; gap: 12px; padding: 13px 17px; border: 1px solid #ffffffb8; border-radius: 13px; background: #ffffffdf; box-shadow: 0 14px 38px #172b3a18; backdrop-filter: blur(12px); }
+.profile-label strong, .profile-label small { display: block; }
+.profile-label strong { font-size: 13px; letter-spacing: -.02em; }
+.profile-label small { margin-top: 2px; color: #657078; font-size: 10px; }
+.profile-label-dot { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: #65a77d; box-shadow: 0 0 0 4px #65a77d1c; }
+.profile-chip { position: absolute; padding: 9px 13px; border: 1px solid #ffffffc9; border-radius: 9px; background: #ffffffdf; box-shadow: 0 10px 30px #172b3a14; color: #34444d; font-size: 11px; font-weight: 750; backdrop-filter: blur(10px); }
+.profile-chip-one { top: 18%; right: 0; }
+.profile-chip-two { bottom: 22%; right: -2%; }
+.metrics { gap: 12px; border: 0; padding: 10px 0 26px; }
+.metric { padding: 18px 19px; border: 1px solid color-mix(in srgb,var(--site-on-background) 9%,transparent); border-radius: 13px; background: color-mix(in srgb,var(--site-background) 78%,white); box-shadow: 0 8px 26px #172b3a07; }
+.metric strong { font-size: 22px; }
+.metric span { line-height: 1.5; }
+.section { padding: 84px 0; }
+.section-head { margin-bottom: 34px; }
+.section-head h2 { font-size: clamp(34px,3.8vw,48px); }
+.section-intro { max-width: 410px; }
+.about-grid { gap: clamp(28px,6vw,85px); }
+.about-lead { font-size: clamp(21px,2.3vw,27px); line-height: 1.42; }
+.skill-group { background: color-mix(in srgb,var(--site-background) 78%,white); }
+.projects { position: relative; overflow: hidden; }
+.projects::before { content: ""; position: absolute; width: 500px; height: 500px; top: -270px; right: -180px; border-radius: 50%; border: 1px solid #ffffff13; box-shadow: 0 0 0 38px #ffffff06,0 0 0 82px #ffffff04; pointer-events: none; }
+.projects > .container { position: relative; z-index: 1; }
+.project-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.project { min-height: 264px; padding: 24px; background: #ffffff08; border-color: #ffffff23; border-radius: 14px; }
+.project:hover { background: #ffffff12; transform: translateY(-4px); }
+.project h3 { font-size: 22px; margin-top: 23px; }
+.project p { font-size: 12px; }
+.experience-item { padding: 27px 0; }
+.approach { background: color-mix(in srgb,#e8ecdf 86%,var(--site-background)); }
+.approach-item { padding-top: 17px; }
+.contact { padding: 76px 0 86px; }
+.contact-panel { border-radius: 18px; padding: 48px; box-shadow: 0 18px 48px #172b3a12; }
+.footer { padding: 26px 0; }
+@media (prefers-color-scheme: dark) {
+  .ambient-background { background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); }
+  .ambient-background::before, .ambient-background::after { opacity: .12; }
+  .profile-frame { border-color: #22313b; background: #22313b; }
+  .profile-label, .profile-chip { background: #172b3aeb; border-color: #ffffff24; color: #edf1ed; }
+  .profile-label small { color: #c4d0d8; }
+  .metric, .skill-group { background: #ffffff08; }
+}
+@media (max-width: 950px) {
+  .hero { grid-template-columns: minmax(0,1fr) minmax(280px,.8fr); gap: 25px; }
+  .profile-visual { min-height: 405px; }
+  .profile-frame { width: min(285px,78%); }
+  .project-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .profile-chip-one { right: -2%; }
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding: 58px 0 40px; gap: 20px; }
+  .profile-visual { min-height: 390px; margin-top: 2px; }
+  .profile-frame { width: min(276px,72%); }
+  .profile-label { left: 0; bottom: 22px; }
+  .profile-chip-one { top: 13%; right: 0; }
+  .profile-chip-two { bottom: 17%; right: 0; }
+  .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .metric { padding: 14px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .section { padding: 65px 0; }
+  .contact-panel { padding: 32px 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ambient-background::before, .ambient-background::after, .profile-halo { animation: none; }
+  .btn, .project { transition: none; }
+}
 </style>
 </head>
 <body>
-<div class="container">
-<header class="nav"><a class="brand" href="#top"><span class="mark">RT</span>RIJANIaina TENDRY</a><nav class="navlinks"><a href="#about">About</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav><span class="status">Open to remote opportunities</span></header>
-<main id="top">
-<section class="hero"><div><div class="eyebrow">Full-Stack Developer · Software Engineering · AI</div><h1>Building software that makes <span class="accent">complexity</span> useful.</h1><p class="lead">I'm Rijaniaina Tendry, a Full-Stack Developer based in Antananarivo, Madagascar. I design and build web platforms, backend services and engineering workflows — with a focus on maintainable architecture, practical delivery and AI-assisted development.</p><div class="actions"><a class="btn primary" href="#work">Explore selected work ↗</a><a class="btn secondary" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a></div></div><aside class="hero-card"><div><div class="eyebrow">Engineering mindset</div><h2>From product thinking to production systems.</h2><p>Turning business needs into clear architecture, dependable services and interfaces people can use.</p></div><div class="card-foot"><span>Antananarivo, Madagascar</span><span>Remote · Worldwide</span></div></aside></section>
-<section class="metrics"><div class="metric"><strong>2022</strong><span>Started professional development</span></div><div class="metric"><strong>Full-Stack</strong><span>Frontend to backend delivery</span></div><div class="metric"><strong>Cloud &amp; DevOps</strong><span>Containers and infrastructure</span></div><div class="metric"><strong>AI-assisted</strong><span>Claude Code in engineering workflows</span></div></section>
-<section class="section" id="about"><div class="section-head"><div><div class="eyebrow">01 / About</div><h2>Engineering with<br>the whole system in mind.</h2></div><p class="intro">I work across the software lifecycle: understanding a problem, shaping the architecture, implementing features, integrating services and supporting reliable delivery.</p></div><div class="about-grid"><div class="about-lead">I enjoy building systems where product requirements, technical architecture and day-to-day operations fit together.</div><div class="about-body">My work spans modern web applications, API design, data-intensive backends, distributed workflows and platform infrastructure. I value clear boundaries, useful automation, observability and codebases that teams can evolve. I also use AI coding tools such as Claude Code as part of practical software development workflows, while keeping engineering decisions and quality controls in focus.</div></div>
-<div class="skills"><div class="skill"><h3>Frontend &amp; UI</h3><div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">shadcn/ui</span><span class="tag">Zustand</span><span class="tag">TanStack Query</span></div></div><div class="skill"><h3>Backend &amp; APIs</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">Go</span><span class="tag">C# / .NET</span><span class="tag">Python</span><span class="tag">PHP</span><span class="tag">REST APIs</span><span class="tag">GORM</span></div></div><div class="skill"><h3>Data &amp; Messaging</h3><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">SQL</span><span class="tag">NoSQL</span><span class="tag">Kafka</span><span class="tag">Temporal</span></div></div><div class="skill"><h3>Infrastructure &amp; AI</h3><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Apache</span><span class="tag">Vault</span><span class="tag">Keycloak</span><span class="tag">Claude Code</span></div></div></div></section>
-<section class="projects section" id="work"><div class="section-head"><div><div class="eyebrow">02 / Selected work</div><h2>Systems, platforms<br>&amp; engineering ideas.</h2></div><p class="intro">A selection of product and technical work that reflects the kinds of problems I work on: platform foundations, distributed processing, collaboration and quality systems.</p></div><div class="project-grid">
-<article class="project"><span class="project-type">Platform architecture · 01</span><h3>All-Intranet</h3><p>A modular intranet platform concept built around a central Core: service lifecycle management, identity, service discovery and a dynamic interface decoupled from individual plugins.</p><div class="tags"><span class="tag">Platform design</span><span class="tag">Plugin architecture</span><span class="tag">IAM</span><span class="tag">Dynamic UI</span></div></article>
-<article class="project"><span class="project-type">AI &amp; collaboration · 02</span><h3>Claude Colabs</h3><p>A collaborative engineering environment concept connecting people and AI agents around shared remote Git workspaces, role-based capabilities, task orchestration and auditable handoffs.</p><div class="tags"><span class="tag">Claude Code</span><span class="tag">Git workflows</span><span class="tag">RBAC</span><span class="tag">Agent orchestration</span></div></article>
-<article class="project"><span class="project-type">Data platform · 03</span><h3>Master Data Management</h3><p>Identity and reference-data workflows with controlled entity creation, uniqueness checks, event-driven distribution and consumer-facing projections.</p><div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">Kafka</span><span class="tag">Data quality</span></div></article>
-<article class="project"><span class="project-type">Workflow engineering · 04</span><h3>Fetcher &amp; Workflow Engine</h3><p>A configurable ingestion and orchestration platform concept covering multiple source types, queues, rules, schema validation, storage strategies and event delivery.</p><div class="tags"><span class="tag">Go</span><span class="tag">Temporal</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span></div></article>
-<article class="project"><span class="project-type">Quality engineering · 05</span><h3>Sampling Service</h3><p>A quality-control service implementing ISO 2859-1 sampling logic, progressive lot handling and integration patterns for operational quality workflows.</p><div class="tags"><span class="tag">Go</span><span class="tag">ISO 2859-1</span><span class="tag">Kafka</span><span class="tag">Business rules</span></div></article>
-<article class="project"><span class="project-type">Infrastructure · 06</span><h3>Cloud-native foundations</h3><p>Hands-on work with containerized services and platform components, including Kubernetes, Helm, Keycloak, Vault, Redis and Prometheus-based monitoring.</p><div class="tags"><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Observability</span></div></article>
-</div><p class="note">Some entries describe internal engineering work or product concepts. Implementation details and confidential client information are intentionally not published.</p></section>
-<section class="section" id="experience"><div class="section-head"><div><div class="eyebrow">03 / Experience</div><h2>Building and<br>evolving software.</h2></div><p class="intro">Professional software development experience since 2022, with work spanning application development, backend systems and technical platform concerns.</p></div><div class="experience-list"><div class="experience-item"><div class="experience-date">2022 — Present</div><div><h3>Full-Stack Developer</h3><p>Professional software development across web and business applications. Experience includes frontend and backend implementation, API and database integration, debugging, system design and delivery within collaborative engineering environments.</p></div></div><div class="experience-item"><div class="experience-date">Current focus</div><div><h3>AI-assisted engineering &amp; platform development</h3><p>Applying Claude Code in day-to-day development and exploring structured collaboration between developers, AI agents, Git workflows and enterprise engineering processes.</p></div></div></div></section>
-<section class="approach section"><div class="section-head"><div><div class="eyebrow">04 / How I work</div><h2>Practical, structured,<br>delivery-focused.</h2></div><p class="intro">Good software is more than a working feature. It should be understandable, operable and ready to evolve.</p></div><div class="approach-grid"><div class="approach-item"><strong>Understand the problem</strong><p>Clarify business needs, constraints and expected outcomes before choosing an implementation.</p></div><div class="approach-item"><strong>Design for change</strong><p>Favor clear interfaces, modular boundaries, maintainable data models and explicit workflows.</p></div><div class="approach-item"><strong>Deliver responsibly</strong><p>Use automation and AI tools pragmatically, with attention to testing, reliability and operational visibility.</p></div></div></section>
-<section class="contact" id="contact"><div class="contact-panel"><div><div class="eyebrow">05 / Contact</div><h2>Have a project to build?</h2><p>I'm interested in remote opportunities, freelance missions and collaborations involving full-stack development, backend engineering, platform architecture and AI-enabled software delivery.</p></div><a class="btn primary" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">Let's connect on LinkedIn ↗</a></div></section>
-</main>
-<footer class="footer"><span>© <span id="year">2026</span> Rijaniaina Tendry. Built with a focus on clarity and engineering.</span><span><a href="https://github.com/Tendry81" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">LinkedIn</a> · Antananarivo, Madagascar</span></footer>
-</div><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-</body></html>
+<div id="app">
+  <div class="ambient-background" aria-hidden="true"></div>
+  <header class="container nav">
+    <a class="brand" href="#top" aria-label="Rijaniaina Tendry home"><span class="brand-mark">RT</span><span>RIJANIaina TENDRY</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#work">Selected work</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="availability"><span class="dot"></span> Open to remote opportunities</div>
+  </header>
+  <main id="top">
+    <section class="container hero">
+      <div>
+        <div class="eyebrow">Full-Stack Developer · Software Engineering · AI</div>
+        <h1>Building software that makes <span class="accent">complexity</span> useful.</h1>
+        <p class="hero-copy">I'm Rijaniaina Tendry, a Full-Stack Developer based in Antananarivo, Madagascar. I design and build web platforms, backend services and engineering workflows — with a focus on maintainable architecture, practical delivery and AI-assisted development.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#work">Explore selected work <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+      <aside class="profile-visual" aria-label="Profile portrait">
+        <div class="profile-halo" aria-hidden="true"></div>
+        <div class="profile-frame"><img src="https://tendry81.github.io/assets/profile.webp" alt="Portrait of Rijaniaina Tendry" loading="eager" decoding="async"></div>
+        <div class="profile-label"><span class="profile-label-dot"></span><span><strong>Rijaniaina Tendry</strong><small>Full-Stack Developer · Madagascar</small></span></div>
+        <div class="profile-chip profile-chip-one">Backend &amp; APIs</div>
+        <div class="profile-chip profile-chip-two">AI-assisted engineering</div>
+      </aside>
+    </section>
+    <section class="container metrics" aria-label="Professional overview">
+      <div class="metric"><strong>2022</strong><span>Started professional development</span></div>
+      <div class="metric"><strong>Full-Stack</strong><span>Frontend to backend delivery</span></div>
+      <div class="metric"><strong>Cloud &amp; DevOps</strong><span>Containers and infrastructure</span></div>
+      <div class="metric"><strong>AI-assisted</strong><span>Claude Code in engineering workflows</span></div>
+    </section>
+    <section class="container section" id="about">
+      <div class="section-head"><div><div class="eyebrow">01 / About</div><h2>Engineering with<br>the whole system in mind.</h2></div><p class="section-intro">I work across the software lifecycle: understanding a problem, shaping the architecture, implementing features, integrating services and supporting reliable delivery.</p></div>
+      <div class="about-grid">
+        <div class="about-lead">I enjoy building systems where product requirements, technical architecture and day-to-day operations fit together.</div>
+        <div class="about-body">My work spans modern web applications, API design, data-intensive backends, distributed workflows and platform infrastructure. I value clear boundaries, useful automation, observability and codebases that teams can evolve. I also use AI coding tools such as Claude Code as part of practical software development workflows, while keeping engineering decisions and quality controls in focus.</div>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group"><h3>Frontend &amp; UI</h3><div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">shadcn/ui</span><span class="tag">Zustand</span><span class="tag">TanStack Query</span></div></div>
+        <div class="skill-group"><h3>Backend &amp; APIs</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">Go</span><span class="tag">C# / .NET</span><span class="tag">Python</span><span class="tag">PHP</span><span class="tag">REST APIs</span><span class="tag">GORM</span></div></div>
+        <div class="skill-group"><h3>Data &amp; Messaging</h3><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">SQL</span><span class="tag">NoSQL</span><span class="tag">Kafka</span><span class="tag">Temporal</span></div></div>
+        <div class="skill-group"><h3>Infrastructure &amp; AI</h3><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Apache</span><span class="tag">Vault</span><span class="tag">Keycloak</span><span class="tag">Claude Code</span></div></div>
+      </div>
+    </section>
+    <section class="projects section" id="work">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">02 / Selected work</div><h2>Systems, platforms<br>&amp; engineering ideas.</h2></div><p class="section-intro">A selection of product and technical work that reflects the kinds of problems I work on: platform foundations, distributed processing, collaboration and quality systems.</p></div>
+        <div class="project-grid">
+          <article class="project"><div class="project-top"><span class="project-type">Platform architecture</span><span class="project-index">01</span></div><h3>All-Intranet</h3><p>A modular intranet platform concept built around a central Core: service lifecycle management, identity, service discovery and a dynamic interface decoupled from individual plugins.</p><div class="tags"><span class="tag">Platform design</span><span class="tag">Plugin architecture</span><span class="tag">IAM</span><span class="tag">Dynamic UI</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-type">AI &amp; collaboration</span><span class="project-index">02</span></div><h3>Claude Colabs</h3><p>A collaborative engineering environment concept connecting people and AI agents around shared remote Git workspaces, role-based capabilities, task orchestration and auditable handoffs.</p><div class="tags"><span class="tag">Claude Code</span><span class="tag">Git workflows</span><span class="tag">RBAC</span><span class="tag">Agent orchestration</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-type">Data platform</span><span class="project-index">03</span></div><h3>Master Data Management</h3><p>Identity and reference-data workflows with controlled entity creation, uniqueness checks, event-driven distribution and consumer-facing projections.</p><div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><span class="tag">Kafka</span><span class="tag">Data quality</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-type">Workflow engineering</span><span class="project-index">04</span></div><h3>Fetcher &amp; Workflow Engine</h3><p>A configurable ingestion and orchestration platform concept covering multiple source types, queues, rules, schema validation, storage strategies and event delivery.</p><div class="tags"><span class="tag">Go</span><span class="tag">Temporal</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-type">Quality engineering</span><span class="project-index">05</span></div><h3>Sampling Service</h3><p>A quality-control service implementing ISO 2859-1 sampling logic, progressive lot handling and integration patterns for operational quality workflows.</p><div class="tags"><span class="tag">Go</span><span class="tag">ISO 2859-1</span><span class="tag">Kafka</span><span class="tag">Business rules</span></div></article>
+          <article class="project"><div class="project-top"><span class="project-type">Infrastructure</span><span class="project-index">06</span></div><h3>Cloud-native foundations</h3><p>Hands-on work with containerized services and platform components, including Kubernetes, Helm, Keycloak, Vault, Redis and Prometheus-based monitoring.</p><div class="tags"><span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">Observability</span></div></article>
+        </div>
+        <p class="note">Some entries describe internal engineering work or product concepts. Implementation details and confidential client information are intentionally not published.</p>
+      </div>
+    </section>
+    <section class="container section" id="experience">
+      <div class="section-head"><div><div class="eyebrow">03 / Experience</div><h2>Building and<br>evolving software.</h2></div><p class="section-intro">Professional software development experience since 2022, with work spanning application development, backend systems and technical platform concerns.</p></div>
+      <div class="experience-list">
+        <div class="experience-item"><div class="experience-date">2022 — Present</div><div><h3>Full-Stack Developer</h3><p>Professional software development across web and business applications. Experience includes frontend and backend implementation, API and database integration, debugging, system design and delivery within collaborative engineering environments.</p></div></div>
+        <div class="experience-item"><div class="experience-date">Current focus</div><div><h3>AI-assisted engineering &amp; platform development</h3><p>Applying Claude Code in day-to-day development and exploring structured collaboration between developers, AI agents, Git workflows and enterprise engineering processes.</p></div></div>
+      </div>
+    </section>
+    <section class="approach section">
+      <div class="container">
+        <div class="section-head"><div><div class="eyebrow">04 / How I work</div><h2>Practical, structured,<br>delivery-focused.</h2></div><p class="section-intro">Good software is more than a working feature. It should be understandable, operable and ready to evolve.</p></div>
+        <div class="approach-grid">
+          <div class="approach-item"><strong>Understand the problem</strong><p>Clarify business needs, constraints and expected outcomes before choosing an implementation.</p></div>
+          <div class="approach-item"><strong>Design for change</strong><p>Favor clear interfaces, modular boundaries, maintainable data models and explicit workflows.</p></div>
+          <div class="approach-item"><strong>Deliver responsibly</strong><p>Use automation and AI tools pragmatically, with attention to testing, reliability and operational visibility.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="container contact" id="contact">
+      <div class="contact-panel">
+        <div><div class="eyebrow">05 / Contact</div><h2>Have a project to build?</h2><p>I'm interested in remote opportunities, freelance missions and collaborations involving full-stack development, backend engineering, platform architecture and AI-enabled software delivery.</p></div>
+        <a class="btn" href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">Let's connect on LinkedIn ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer class="container footer"><span>© <span id="year">2026</span> Rijaniaina Tendry. Built with a focus on clarity and engineering.</span><span><a href="https://github.com/Tendry81" target="_blank" rel="noreferrer">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noreferrer">LinkedIn</a> &nbsp;·&nbsp; Antananarivo, Madagascar</span></footer>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
