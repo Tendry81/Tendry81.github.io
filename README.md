@@ -15,12 +15,14 @@ npm run lint     # type-check
 
 | Path | Content |
 | --- | --- |
-| `app/layout.tsx` | Metadata (SEO, Open Graph), fonts via `next/font` |
-| `app/page.tsx` | Page composition |
+| `app/(en)/`, `app/(fr)/fr/` | English page at `/`, French page at `/fr/` (each pre-rendered, own `lang`) |
+| `lib/seo.ts` | Titles, descriptions, hreflang, Open Graph, JSON-LD (schema.org Person) |
+| `app/sitemap.ts`, `app/robots.ts`, `app/icon.svg` | Sitemap, robots.txt, favicon |
+| `public/og.png` | 1200×630 social share image |
 | `app/globals.css` | Design system (tokens, light/dark, sections) |
+| `components/HomePage.tsx` | Page composition shared by both languages |
 | `components/Sections.tsx` | Hero, About, Projects, Tools, Experience, Approach, Contact, Footer |
-| `components/Nav.tsx` | Sticky nav, mobile menu, active-section highlight, FR/EN toggle |
-| `components/LanguageProvider.tsx` | EN/FR context, persisted in `localStorage` |
+| `components/Nav.tsx` | Sticky nav, mobile menu, active-section highlight, EN/FR link |
 | `components/Background.tsx` | Neural-network canvas and floating code symbols |
 | `components/ExperienceCounter.tsx` | Live experience counter |
 | `lib/content.ts` | Projects, skills, tools, links — edit here to update content |

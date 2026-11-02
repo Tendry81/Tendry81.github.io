@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { NAV_SECTIONS } from "@/lib/content";
+import { LANG_PATH } from "@/lib/seo";
 import { T, useLanguage } from "./LanguageProvider";
 
 export function Nav() {
-  const { lang, t, toggle } = useLanguage();
+  const { lang, t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -87,14 +88,15 @@ export function Nav() {
         <span className="dot" />
         <T k="nav.availability" />
       </div>
-      <button
+      <a
         className="language-toggle"
-        type="button"
-        onClick={toggle}
-        aria-label={fr ? "Switch to English" : "Passer en français"}
+        href={LANG_PATH[fr ? "en" : "fr"]}
+        hrefLang={fr ? "en" : "fr"}
+        lang={fr ? "en" : "fr"}
+        aria-label={t("nav.switch")}
       >
         {fr ? "EN" : "FR"}
-      </button>
+      </a>
       <button
         className="nav-toggle"
         type="button"

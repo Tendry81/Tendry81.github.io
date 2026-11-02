@@ -1,72 +1,19 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext } from "react";
 import { translations, type Language, type TranslationKey } from "@/lib/i18n";
-
-const STORAGE_KEY = "portfolio-language";
 
 interface LanguageContextValue {
   lang: Language;
   t: (key: TranslationKey) => string;
-  toggle: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>("en");
-  const switching = useRef(false);
-
-  // Restore the saved language after hydration (the static HTML is English).
-  useEffect(() => {
-    try {
-      if (localStorage.getItem(STORAGE_KEY) === "fr") setLang("fr");
-    } catch {
-      /* storage unavailable */
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    document.title =
-      lang === "fr"
-        ? "Rijaniaina Tendry — Développeur Full-Stack"
-        : "Rijaniaina Tendry — Full-Stack Developer";
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      /* storage unavailable */
-    }
-  }, [lang]);
-
-  const t = useCallback((key: TranslationKey) => translations[lang][key], [lang]);
-
-  // Fade out → swap text → fade in, to hide the reflow (same timing as the original).
-  const toggle = useCallback(() => {
-    if (switching.current) return;
-    const next: Language = lang === "en" ? "fr" : "en";
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setLang(next);
-      return;
-    }
-    switching.current = true;
-    document.body.classList.add("lang-switching");
-    window.setTimeout(() => {
-      setLang(next);
-      requestAnimationFrame(() => {
-        window.setTimeout(() => {
-          document.body.classList.remove("lang-switching");
-          window.setTimeout(() => {
-            switching.current = false;
-          }, 220);
-        }, 40);
-      });
-    }, 200);
-  }, [lang]);
-
-  return (
-    <LanguageContext.Provider value={{ lang, t, toggle }}>{children}</LanguageContext.Provider>
-  );
+/** The language comes from the route (/ = English, /fr/ = French), so both are pre-rendered. */
+export function LanguageProvider({ lang, children }: { lang: Language; children: React.ReactNode }) {
+  const t = (key: TranslationKey) => translations[lang][key];
+  return <LanguageContext.Provider value={{ lang, t }}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {
