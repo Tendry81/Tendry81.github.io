@@ -1451,3 +1451,24 @@ body.lang-switching #app > footer {
   #neural-canvas { display: none; }
   .nav-links a.is-active::after { animation: none; }
 }
+
+/* ------------------------------------------------------------
+   22. ADDITIONS (Next.js version)
+   ------------------------------------------------------------ */
+.experience-list { list-style: none; margin: 0; padding: 0; }
+.experience-item p.experience-company {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: .04em;
+  color: var(--accent-ink);
+}
+a.language-toggle {
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+}
+/* Mobile: keep the language switch next to the menu button instead of centred. */
+@media (max-width: 760px) {
+  .language-toggle { margin-left: auto; }
+}

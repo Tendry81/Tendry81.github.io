@@ -197,26 +197,34 @@ export function Tools() {
   );
 }
 
+const EXPERIENCE = [
+  { date: "experience.date", role: "experience.role", desc: "experience.desc", company: true },
+  { date: "experience.trainer.date", role: "experience.trainer.role", desc: "experience.trainer.desc", company: true },
+  { date: "experience.ops.date", role: "experience.ops.role", desc: "experience.ops.desc", company: true },
+  { date: "experience.focus", role: "experience.focusTitle", desc: "experience.focusDesc", company: false },
+] as const satisfies readonly {
+  date: TranslationKey;
+  role: TranslationKey;
+  desc: TranslationKey;
+  company: boolean;
+}[];
+
 export function Experience() {
   return (
     <section className="container section" id="experience">
       <SectionHead eyebrow="experience.eyebrow" title="experience.title" intro="experience.intro" />
-      <div className="experience-list reveal">
-        <div className="experience-item">
-          <T k="experience.date" as="div" className="experience-date" />
-          <div>
-            <T k="experience.role" as="h3" />
-            <T k="experience.desc" as="p" />
-          </div>
-        </div>
-        <div className="experience-item">
-          <T k="experience.focus" as="div" className="experience-date" />
-          <div>
-            <T k="experience.focusTitle" as="h3" />
-            <T k="experience.focusDesc" as="p" />
-          </div>
-        </div>
-      </div>
+      <ol className="experience-list reveal">
+        {EXPERIENCE.map((item) => (
+          <li className="experience-item" key={item.role}>
+            <T k={item.date} as="div" className="experience-date" />
+            <div>
+              <T k={item.role} as="h3" />
+              {item.company && <T k="experience.company" as="p" className="experience-company" />}
+              <T k={item.desc} as="p" />
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
