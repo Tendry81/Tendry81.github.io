@@ -1,0 +1,11 @@
+name = "portfolio-contact"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Comma-separated list of sites allowed to post to the form.
+ALLOWED_ORIGINS = "https://tendry81.github.io,http://localhost:3000"
+
+# Secrets (never commit them) — set with:
+#   npx wrangler secret put NOTION_TOKEN
+#   npx wrangler secret put NOTION_DATABASE_ID

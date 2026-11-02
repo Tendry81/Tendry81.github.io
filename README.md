@@ -32,3 +32,38 @@ npm run lint     # type-check
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishes `./out`.
 One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+## Contact form → Notion
+
+The « Discuss your project » form posts to a Cloudflare Worker (`worker/`), which validates the request
+(required fields, honeypot, minimum fill time, allowed origins) and creates a row in a Notion database.
+The Notion token only lives in the Worker's secrets.
+
+```
+Site form ──POST JSON──▶ Cloudflare Worker (NOTION_TOKEN secret) ──▶ Notion « Portfolio leads »
+```
+
+One-time setup:
+
+1. **Notion integration** — <https://www.notion.so/profile/integrations> → *New integration* (internal) → copy the token.
+2. **Database** — create an empty Notion page, share it with the integration (••• → *Connections*), copy its ID, then:
+   ```powershell
+   cd worker; npm install
+   $env:NOTION_TOKEN="<token>"; $env:NOTION_PARENT_PAGE_ID="<page id>"; npm run create-db
+   ```
+   It prints the new `NOTION_DATABASE_ID`.
+3. **Worker** —
+   ```powershell
+   npx wrangler login
+   npx wrangler secret put NOTION_TOKEN
+   npx wrangler secret put NOTION_DATABASE_ID
+   npm run deploy          # prints https://portfolio-contact.<account>.workers.dev
+   ```
+4. **Site** — set the Worker URL as a repository variable, then redeploy:
+   ```powershell
+   gh variable set CONTACT_ENDPOINT --body "https://portfolio-contact.<account>.workers.dev"
+   gh workflow run "Deploy to GitHub Pages"
+   ```
+
+Without `CONTACT_ENDPOINT`, the site shows a short message pointing to LinkedIn instead of the form.
+Local test: `cd worker; npx wrangler dev` (secrets in `worker/.dev.vars`, git-ignored).

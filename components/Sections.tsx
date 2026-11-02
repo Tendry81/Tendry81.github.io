@@ -9,6 +9,7 @@ import {
   type Status,
 } from "@/lib/content";
 import type { TranslationKey } from "@/lib/i18n";
+import { ContactForm } from "./ContactForm";
 import { ExperienceCounter } from "./ExperienceCounter";
 import { T } from "./LanguageProvider";
 
@@ -257,19 +258,23 @@ export function Contact() {
   return (
     <section className="container contact" id="contact">
       <div className="contact-panel reveal">
-        <div>
+        <div className="contact-intro">
           <T k="contact.eyebrow" as="div" className="eyebrow" />
           <T k="contact.title" as="h2" />
           <T k="contact.copy" as="p" />
+          <div className="contact-alt">
+            <T k="contact.or" as="p" />
+            <div className="contact-actions">
+              <a className="btn btn-secondary" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                LinkedIn ↗
+              </a>
+              <a className="btn btn-secondary" href={GITHUB_URL} target="_blank" rel="noreferrer">
+                <T k="contact.github" />
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="contact-actions">
-          <a className="btn btn-primary" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
-            <T k="contact.cta" />
-          </a>
-          <a className="btn btn-secondary" href={GITHUB_URL} target="_blank" rel="noreferrer">
-            <T k="contact.github" />
-          </a>
-        </div>
+        <ContactForm />
       </div>
     </section>
   );
