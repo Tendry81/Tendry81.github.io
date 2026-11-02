@@ -173,8 +173,16 @@ export default {
     });
 
     if (!res.ok) {
-      console.error("Notion error", res.status, await res.text());
-      return json(502, { ok: false, error: "notion" }, cors);
+      const detail = await res.text();
+      console.error("Notion error", res.status, detail);
+      // Expose only Notion's short error code (e.g. "unauthorized", "object_not_found") for diagnosis.
+      let code = "unknown";
+      try {
+        code = String((JSON.parse(detail) as { code?: string }).code ?? "unknown");
+      } catch {
+        /* non-JSON error body */
+      }
+      return json(502, { ok: false, error: "notion", notion: code }, cors);
     }
     return json(200, { ok: true }, cors);
   },
