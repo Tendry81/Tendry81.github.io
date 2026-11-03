@@ -292,6 +292,7 @@ export function Footer() {
         <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
           LinkedIn
         </a>
+        &nbsp;·&nbsp; <T k="footer.privacy" />
         &nbsp;·&nbsp; <T k="footer.location" />
       </span>
     </footer>
