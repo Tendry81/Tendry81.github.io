@@ -67,3 +67,7 @@ One-time setup:
 
 Without `CONTACT_ENDPOINT`, the site shows a short message pointing to LinkedIn instead of the form.
 Local test: `cd worker; npx wrangler dev` (secrets in `worker/.dev.vars`, git-ignored).
+
+## License
+
+Source code: [MIT](LICENSE). Texts, photo and personal content remain © Rijaniaina Tendry, all rights reserved.

@@ -60,38 +60,6 @@ export const PROJECTS: Project[] = [
     status: "progress",
     tags: ["Claude Code", "Git workflows", "RBAC", "Orchestration"],
   },
-  {
-    title: "Master Data Management",
-    typeKey: "project.type.data",
-    descKey: "project.desc.mdm",
-    ownership: "company",
-    status: "progress",
-    tags: ["Go", "PostgreSQL", "Kafka", "Data quality"],
-  },
-  {
-    title: "Fetcher & Workflow Engine",
-    typeKey: "project.type.workflow",
-    descKey: "project.desc.fetcher",
-    ownership: "company",
-    status: "progress",
-    tags: ["Go", "Temporal", "Redis", "PostgreSQL"],
-  },
-  {
-    title: "Sampling Service",
-    typeKey: "project.type.quality",
-    descKey: "project.desc.sampling",
-    ownership: "company",
-    status: "progress",
-    tags: ["Go", "ISO 2859-1", "Kafka", "Business rules"],
-  },
-  {
-    title: "Cloud-native foundations",
-    typeKey: "project.type.infra",
-    descKey: "project.desc.cloud",
-    ownership: "company",
-    status: "progress",
-    tags: ["Kubernetes", "Docker", "Helm", "Observability"],
-  },
 ];
 
 export const TOOL_CATEGORIES: { key: TranslationKey; tools: { icon: string; name: string }[] }[] = [
