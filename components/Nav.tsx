@@ -187,7 +187,7 @@ export function Nav() {
                 LinkedIn
               </a>
               <span className="mobile-social-sep">·</span>
-              <a href="mailto:rijaniainatendry@gmail.com" className="mobile-social-link">
+              <a href="mailto:rijaniainatendry@outlook.com" className="mobile-social-link">
                 Email
               </a>
             </div>

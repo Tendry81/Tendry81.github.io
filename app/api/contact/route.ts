@@ -142,13 +142,16 @@ export async function POST(req: NextRequest) {
 
       if (!res.ok) {
         console.error("Notion API call returned status:", res.status);
+        return NextResponse.json({ ok: false, error: "notion" }, { status: 502 });
       }
     } catch (err) {
       console.error("Failed to forward lead to Notion:", err);
+      return NextResponse.json({ ok: false, error: "notion" }, { status: 502 });
     }
   } else {
-    // Lead successfully received and acknowledged server-side
-    console.log(`[Contact Form Received] From: ${data.name} <${data.email}> | Type: ${data.projectType}`);
+    // Nothing is stored without Notion: don't tell the visitor it was sent.
+    console.error("Contact form: NOTION_TOKEN / NOTION_DATABASE_ID not configured");
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
   }
 
   return NextResponse.json({

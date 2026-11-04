@@ -41,7 +41,7 @@ import { ContactForm } from "./ContactForm";
 import { ExperienceCounter } from "./ExperienceCounter";
 import { T, useLanguage } from "./LanguageProvider";
 
-const CONTACT_EMAIL = "rijaniainatendry@gmail.com";
+const CONTACT_EMAIL = "rijaniainatendry@outlook.com";
 
 function SectionHead({
   eyebrow,
@@ -290,6 +290,7 @@ export function Metrics() {
 }
 
 export function About() {
+  const { lang } = useLanguage();
   const [activeGroup, setActiveGroup] = useState<string>("all");
 
   const skillGroupsFiltered =
@@ -306,9 +307,9 @@ export function About() {
           <div className="about-philosophy-quote">
             <span className="quote-mark">“</span>
             <p>
-              Having worked first in operations and training before software engineering
-              gives me a direct understanding of real-world operational friction. I build
-              systems that are maintainable, testable, and reliable for teams.
+              {lang === "fr"
+                ? "Avoir fait moi-même le travail opérationnel, puis formé les équipes, avant de passer au développement guide ma façon de concevoir des logiciels métier."
+                : "Having done the operational work myself, then trained teams, before moving into development shapes how I design business software."}
             </p>
           </div>
         </div>
@@ -402,40 +403,79 @@ interface ProjectArchitectureData {
   impact: string;
 }
 
-const PROJECT_ARCH_DETAILS: Record<string, ProjectArchitectureData> = {
+// Only what the project descriptions state; no invented stack or results.
+const PROJECT_ARCH_DETAILS: Record<string, Record<"en" | "fr", ProjectArchitectureData>> = {
   "All-Intranet": {
-    title: "All-Intranet Architecture Blueprint",
-    diagram: [
-      "Core Microkernel (Go / NestJS)",
-      "Service Discovery & IAM (Keycloak / OAuth2)",
-      "Dynamic Plugin Host (WebAssembly / Sandboxed Containers)",
-      "Decoupled React / Next.js Micro-Frontend Shell",
-    ],
-    patterns: [
-      "Decoupled Core / Plugin microkernel architecture",
-      "Dynamic module registration with schema validation",
-      "Strict role-based access control (RBAC)",
-      "Event-driven inter-service bus for zero downtime extensions",
-    ],
-    impact:
-      "Eliminates monolithic bloat by letting business units build and deploy independent internal tooling widgets without redeploying the core platform.",
+    en: {
+      title: "All-Intranet — architecture concept",
+      diagram: [
+        "Central Core: service lifecycle",
+        "Identity & access management",
+        "Service discovery",
+        "Dynamic interface, decoupled from plugins",
+      ],
+      patterns: [
+        "Separation between the Core and plugins",
+        "Services registered and managed by the Core",
+        "Centralized identity and roles",
+        "Interface built from the registered services",
+      ],
+      impact:
+        "Concept stage, not implemented yet. The goal: add internal tools as plugins without changing the Core.",
+    },
+    fr: {
+      title: "All-Intranet — concept d’architecture",
+      diagram: [
+        "Core central : cycle de vie des services",
+        "Gestion des identités et des accès",
+        "Découverte des services",
+        "Interface dynamique, indépendante des plugins",
+      ],
+      patterns: [
+        "Séparation entre le Core et les plugins",
+        "Services enregistrés et gérés par le Core",
+        "Identité et rôles centralisés",
+        "Interface construite à partir des services enregistrés",
+      ],
+      impact:
+        "Au stade de concept, pas encore réalisé. Objectif : ajouter des outils internes sous forme de plugins sans modifier le Core.",
+    },
   },
   "Claude Colabs": {
-    title: "Claude Colabs Orchestration Blueprint",
-    diagram: [
-      "Human Developer + AI Agent Workspace Layer",
-      "Git Worktree & Branch Synchronization Manager",
-      "Task Orchestration Engine with Audit Log",
-      "Security Sandbox with Permission Gates & RBAC",
-    ],
-    patterns: [
-      "Shared Git worktree management for parallel human/AI pairs",
-      "Granular capability boundaries with strict file write verification",
-      "Structured task handoff protocols with machine-readable checkpoints",
-      "Reproducible dev environments via Docker & DevContainers",
-    ],
-    impact:
-      "Transforms generative AI tools like Claude Code from single-user CLI chat into an auditable, collaborative multi-agent workflow integrated with standard GitHub PR reviews.",
+    en: {
+      title: "Claude Colabs — architecture overview",
+      diagram: [
+        "Shared Git workspaces",
+        "Role-based capabilities",
+        "Task orchestration",
+        "Auditable handoffs between people and AI agents",
+      ],
+      patterns: [
+        "Developers and AI agents working on shared Git workspaces",
+        "Capabilities scoped by role",
+        "Tasks orchestrated between people and agents",
+        "Traceable handoffs at each step",
+      ],
+      impact:
+        "In progress. The goal: make teamwork with AI coding agents such as Claude Code structured and auditable.",
+    },
+    fr: {
+      title: "Claude Colabs — vue d’architecture",
+      diagram: [
+        "Espaces de travail Git partagés",
+        "Capacités attribuées par rôle",
+        "Orchestration des tâches",
+        "Transferts auditables entre personnes et agents IA",
+      ],
+      patterns: [
+        "Développeurs et agents IA sur des espaces Git partagés",
+        "Capacités limitées selon le rôle",
+        "Tâches orchestrées entre personnes et agents",
+        "Transferts traçables à chaque étape",
+      ],
+      impact:
+        "En cours. Objectif : rendre structuré et auditable le travail en équipe avec des agents de code IA comme Claude Code.",
+    },
   },
 };
 
@@ -488,7 +528,7 @@ export function Projects() {
 
         <div className="project-grid">
           {filteredProjects.map((project, i) => {
-            const arch = PROJECT_ARCH_DETAILS[project.title];
+            const arch = PROJECT_ARCH_DETAILS[project.title]?.[lang];
             return (
               <article className="project-card reveal" key={project.title}>
                 <div className="project-card-header">
@@ -703,51 +743,77 @@ const EXPERIENCE = [
     role: "experience.role",
     desc: "experience.desc",
     company: true,
-    highlights: [
-      "Full-stack architecture: React, Next.js, TypeScript, Go, NestJS, and .NET",
-      "Data & workflow automation: PostgreSQL, document processing engines, Temporal",
-      "DevOps deployment: Containerization with Docker & Kubernetes clusters",
-    ],
+    highlights: {
+      en: [
+        "Business applications: React, Next.js and TypeScript frontends",
+        "Backend services: Node.js, NestJS, Go and .NET; REST APIs and PostgreSQL",
+        "Document processing and workflow automation; Docker and Kubernetes deployments",
+      ],
+      fr: [
+        "Applications métier : frontends React, Next.js et TypeScript",
+        "Services backend : Node.js, NestJS, Go et .NET ; API REST et PostgreSQL",
+        "Traitement documentaire et automatisation de workflows ; déploiements Docker et Kubernetes",
+      ],
+    },
   },
   {
     date: "experience.focus",
     role: "experience.focusTitle",
     desc: "experience.focusDesc",
     company: false,
-    highlights: [
-      "AI-driven coding workflows with Claude Code in professional production environments",
-      "Human-in-the-loop verification, RBAC security gates, and auditable Git PR reviews",
-    ],
+    highlights: {
+      en: [
+        "Claude Code used in day-to-day development",
+        "Exploring structured collaboration between developers, AI agents and Git workflows",
+      ],
+      fr: [
+        "Claude Code utilisé au quotidien dans le développement",
+        "Exploration d’une collaboration structurée entre développeurs, agents IA et workflows Git",
+      ],
+    },
   },
   {
     date: "experience.trainer.date",
     role: "experience.trainer.role",
     desc: "experience.trainer.desc",
     company: true,
-    highlights: [
-      "Trained and onboarded dozens of operators and technicians on core business systems",
-      "Authored operational manuals, quality standards, and technical onboarding tracks",
-    ],
+    highlights: {
+      en: [
+        "Training and onboarding of operational team members",
+        "Business processes, production tools and quality standards",
+      ],
+      fr: [
+        "Formation et intégration des équipes opérationnelles",
+        "Processus métier, outils de production et standards qualité",
+      ],
+    },
   },
   {
     date: "experience.ops.date",
     role: "experience.ops.role",
     desc: "experience.ops.desc",
     company: true,
-    highlights: [
-      "Hands-on execution of data entry, case handling, and critical business workflows",
-      "Direct exposure to user pain points, driving deep empathy for ergonomic UX",
-    ],
+    highlights: {
+      en: [
+        "Data entry operator (2018–2019), then case handler (2019–2020)",
+        "Production work focused on accuracy, procedures and deadlines",
+      ],
+      fr: [
+        "Opérateur de saisie polyvalent (2018–2019), puis gestionnaire (2019–2020)",
+        "Travail en production : rigueur, procédures et délais",
+      ],
+    },
   },
 ] as const satisfies readonly {
   date: TranslationKey;
   role: TranslationKey;
   desc: TranslationKey;
   company: boolean;
-  highlights: string[];
+  highlights: Record<"en" | "fr", readonly string[]>;
 }[];
 
 export function Experience() {
+  const { lang } = useLanguage();
   const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   return (
@@ -791,7 +857,7 @@ export function Experience() {
                     </button>
                     {isExpanded && (
                       <ul className="timeline-highlights-list">
-                        {item.highlights.map((h) => (
+                        {item.highlights[lang].map((h) => (
                           <li key={h} className="timeline-highlight-point">
                             <span className="highlight-bullet">▸</span> {h}
                           </li>
@@ -814,28 +880,38 @@ const APPROACH = [
     title: "approach.oneTitle",
     body: "approach.one",
     icon: Search,
-    detail: "Clarifying business constraints, user journeys and edge cases before writing code.",
+    detail: {
+      en: "Needs, constraints and expected outcomes come before code.",
+      fr: "Besoins, contraintes et résultats attendus avant le code.",
+    },
   },
   {
     title: "approach.twoTitle",
     body: "approach.two",
     icon: Cpu,
-    detail: "Clean boundaries, strong typing, decoupled services, and maintainable schemas.",
+    detail: {
+      en: "Clear interfaces, separate modules and maintainable data models.",
+      fr: "Interfaces claires, modules séparés et modèles de données maintenables.",
+    },
   },
   {
     title: "approach.threeTitle",
     body: "approach.three",
     icon: ShieldCheck,
-    detail: "Responsible AI acceleration, rigorous automated testing, and operational observability.",
+    detail: {
+      en: "Pragmatic use of AI, with attention to testing, reliability and observability.",
+      fr: "IA utilisée avec discernement : tests, fiabilité et observabilité.",
+    },
   },
 ] as const satisfies readonly {
   title: TranslationKey;
   body: TranslationKey;
   icon: typeof Search;
-  detail: string;
+  detail: Record<"en" | "fr", string>;
 }[];
 
 export function Approach() {
+  const { lang } = useLanguage();
   return (
     <section className="approach section">
       <div className="container">
@@ -853,7 +929,7 @@ export function Approach() {
                 </div>
                 <T k={item.title} as="strong" className="approach-card-title" />
                 <T k={item.body} as="p" className="approach-card-body" />
-                <p className="approach-card-detail">{item.detail}</p>
+                <p className="approach-card-detail">{item.detail[lang]}</p>
               </div>
             );
           })}
@@ -884,7 +960,7 @@ export function Contact() {
           <div className="contact-highlights-card">
             <div className="contact-highlight-row">
               <Clock className="w-4 h-4 text-accent-ink shrink-0" />
-              <span>{lang === "fr" ? "Réponse sous 24h ouvrées" : "Response within 24 business hours"}</span>
+              <span>{lang === "fr" ? "Réponse sous 48h ouvrées" : "Response within 48 business hours"}</span>
             </div>
             <div className="contact-highlight-row">
               <MapPin className="w-4 h-4 text-accent-ink shrink-0" />
