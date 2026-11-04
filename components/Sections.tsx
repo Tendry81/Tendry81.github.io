@@ -232,12 +232,19 @@ export function Hero() {
               <span className="profile-beacon" aria-hidden="true" />
               <div>
                 <strong className="profile-name">Rijaniaina Tendry</strong>
-                <span className="profile-role">Senior Full-Stack Developer</span>
+                <span className="profile-role">
+                  {lang === "fr" ? "Développeur Senior Full-Stack" : "Senior Full-Stack Developer"}
+                </span>
               </div>
             </div>
             <div className="profile-specs">
-              <span className="profile-spec">8+ yrs tech &amp; ops</span>
-              <span className="profile-spec">Remote / Global</span>
+              {/* be-ys since 2018 (ops & training), software development since Oct 2022 */}
+              <span className="profile-spec">
+                {lang === "fr" ? "8 ans ops & dev" : "8 yrs ops & dev"}
+              </span>
+              <span className="profile-spec">
+                {lang === "fr" ? "Ouvert au remote" : "Open to remote"}
+              </span>
             </div>
           </div>
         </div>
