@@ -1088,17 +1088,18 @@ body.lang-switching #app > footer {
   background: rgba(217, 243, 106, .18);
   border-color: rgba(217, 243, 106, .38);
 }
-.projects .status-idea {
+/* Project cards are light in light mode: pastel badge colors only in dark mode */
+html.dark .projects .status-idea {
   color: #ffd58a;
   background: rgba(255, 190, 90, .18);
   border-color: rgba(255, 190, 90, .35);
 }
-.projects .status-progress {
+html.dark .projects .status-progress {
   color: #9ed6ff;
   background: rgba(95, 175, 235, .18);
   border-color: rgba(95, 175, 235, .38);
 }
-.projects .status-done {
+html.dark .projects .status-done {
   color: #9be1b3;
   background: rgba(98, 167, 123, .18);
   border-color: rgba(98, 167, 123, .38);
@@ -1131,13 +1132,12 @@ body.lang-switching #app > footer {
   border-color: rgba(98, 167, 123, .5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root .ownership-personal { color: #c8dcff; background: rgba(95, 145, 220, .16); border-color: rgba(145, 185, 245, .3); }
-  :root .ownership-company  { color: #e1f69a; background: rgba(217, 243, 106, .12); border-color: rgba(217, 243, 106, .27); }
-  :root .status-idea        { color: #ffd58a; background: rgba(255, 190, 90, .13);  border-color: rgba(255, 190, 90, .25); }
-  :root .status-progress    { color: #9ed6ff; background: rgba(95, 175, 235, .13); border-color: rgba(95, 175, 235, .25); }
-  :root .status-done        { color: #9be1b3; background: rgba(98, 167, 123, .14); border-color: rgba(98, 167, 123, .28); }
-}
+/* Follow the site theme (html.dark), not the OS preference */
+html.dark .ownership-personal { color: #c8dcff; background: rgba(95, 145, 220, .16); border-color: rgba(145, 185, 245, .3); }
+html.dark .ownership-company  { color: #e1f69a; background: rgba(217, 243, 106, .12); border-color: rgba(217, 243, 106, .27); }
+html.dark .status-idea        { color: #ffd58a; background: rgba(255, 190, 90, .13);  border-color: rgba(255, 190, 90, .25); }
+html.dark .status-progress    { color: #9ed6ff; background: rgba(95, 175, 235, .13); border-color: rgba(95, 175, 235, .25); }
+html.dark .status-done        { color: #9be1b3; background: rgba(98, 167, 123, .14); border-color: rgba(98, 167, 123, .28); }
 
 .note {
   margin-top: var(--space-6);
@@ -1327,6 +1327,15 @@ body.lang-switching #app > footer {
   font-size: 14px;
   line-height: 1.75;
   color: rgba(14, 36, 51, .80);
+}
+/* Dark mode: the panel is dark, so drop the navy-on-lime colors of the light panel */
+html.dark .contact-panel .eyebrow { color: var(--accent-ink); }
+html.dark .contact-panel p { color: var(--text-muted); }
+html.dark .contact-panel .btn-secondary { color: var(--text); border-color: var(--border-strong); }
+html.dark .contact-form {
+  background: var(--surface-raised);
+  border-color: var(--border);
+  color: var(--text);
 }
 .contact-panel .btn { white-space: nowrap; }
 .contact-panel .btn-primary:hover { background: var(--brand-ink-soft); }
@@ -2546,6 +2555,7 @@ html.dark .scroll-progress-bar {
   border: 1px solid var(--border);
   color: var(--text-subtle);
 }
+html.dark .project-tag { color: var(--text-muted); }
 .project-card-footer {
   margin-top: var(--space-5);
   padding-top: var(--space-4);
@@ -2572,6 +2582,9 @@ html.dark .scroll-progress-bar {
   font-style: italic;
   margin-top: var(--space-4);
 }
+/* The projects band is navy in both themes */
+.projects .project-count-badge,
+.projects .projects-confidentiality-note { color: rgba(247, 248, 245, .72); }
 
 /* Architecture Deep Dive Modal */
 .modal-backdrop {
@@ -2596,6 +2609,8 @@ html.dark .scroll-progress-bar {
   background: var(--surface);
   box-shadow: var(--shadow-lg);
   padding: clamp(24px, 4vw, 36px);
+  /* Rendered inside .projects (light text): reset to the theme text color */
+  color: var(--text);
 }
 .modal-header {
   display: flex;
@@ -2942,7 +2957,7 @@ html.dark .scroll-progress-bar {
 .approach-card-detail {
   font-size: var(--text-xs);
   line-height: 1.5;
-  color: var(--text-subtle);
+  color: var(--text-muted);
   padding: 10px 12px;
   border-radius: var(--radius-xs);
   background: var(--surface-sunken);
