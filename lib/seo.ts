@@ -113,6 +113,8 @@ export function jsonLd(lang: Language) {
           "Workflow automation",
           "Document processing",
           "AI-assisted software engineering",
+          "LLM integration (OpenAI, Google GenAI, Vercel AI SDK, CrewAI)",
+          "AI agent customization (plugins, tools, MCP, skills, commands)",
         ],
         sameAs: [LINKEDIN_URL, GITHUB_URL],
       },

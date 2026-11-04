@@ -232,12 +232,19 @@ export function Hero() {
               <span className="profile-beacon" aria-hidden="true" />
               <div>
                 <strong className="profile-name">Rijaniaina Tendry</strong>
-                <span className="profile-role">Senior Full-Stack Developer</span>
+                <span className="profile-role">
+                  {lang === "fr" ? "Développeur Senior Full-Stack" : "Senior Full-Stack Developer"}
+                </span>
               </div>
             </div>
             <div className="profile-specs">
-              <span className="profile-spec">8+ yrs tech &amp; ops</span>
-              <span className="profile-spec">Remote / Global</span>
+              {/* be-ys since 2018 (ops & training), software development since Oct 2022 */}
+              <span className="profile-spec">
+                {lang === "fr" ? "8 ans ops & dev" : "8 yrs ops & dev"}
+              </span>
+              <span className="profile-spec">
+                {lang === "fr" ? "Ouvert au remote" : "Open to remote"}
+              </span>
             </div>
           </div>
         </div>
@@ -764,10 +771,14 @@ const EXPERIENCE = [
     highlights: {
       en: [
         "Claude Code used in day-to-day development",
+        "LLM integration through SDKs and GenAI frameworks: OpenAI, Google GenAI, Vercel AI SDK, CrewAI",
+        "Agent harness customization: plugins, tools, MCP servers, skills and commands",
         "Exploring structured collaboration between developers, AI agents and Git workflows",
       ],
       fr: [
         "Claude Code utilisé au quotidien dans le développement",
+        "Intégration de LLM via SDK et frameworks GenAI : OpenAI, Google GenAI, Vercel AI SDK, CrewAI",
+        "Personnalisation de harnais d’agents : plugins, outils, serveurs MCP, skills et commandes",
         "Exploration d’une collaboration structurée entre développeurs, agents IA et workflows Git",
       ],
     },
