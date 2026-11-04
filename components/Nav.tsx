@@ -51,6 +51,18 @@ export function Nav() {
     });
   };
 
+  // Lock body scroll on mobile when menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   // Close on outside click, Escape, and resize
   useEffect(() => {
     if (!open) return;
@@ -113,6 +125,13 @@ export function Nav() {
         style={{ scaleX }}
         aria-hidden="true"
       />
+      {/* Backdrop overlay for mobile menu */}
+      <div
+        className={`mobile-nav-backdrop${open ? " is-open" : ""}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
       <header ref={navRef} className={`site-header${open ? " is-open" : ""}`} id="site-nav">
       <div className="container nav-container">
         {/* Zone 1: Wordmark */}
@@ -126,21 +145,58 @@ export function Nav() {
 
         {/* Zone 2: Navigation Links */}
         <nav className="nav-links" id="nav-links" aria-label={t("nav.label")}>
-          {NAV_SECTIONS.map((s) => (
+          <div className="mobile-drawer-header">
+            <span className="mobile-drawer-title">{fr ? "Navigation" : "Menu"}</span>
+            <span className="mobile-drawer-city">Antananarivo · UTC+3</span>
+          </div>
+
+          {NAV_SECTIONS.map((s, idx) => (
             <a
               key={s.id}
               href={`#${s.id}`}
               className={`nav-link ${activeId === s.id ? "is-active" : ""}`}
               onClick={() => setOpen(false)}
             >
-              {t(s.key)}
+              <span className="mobile-nav-num">0{idx + 1}</span>
+              <span className="mobile-nav-label">{t(s.key)}</span>
+              <ArrowUpRight className="mobile-nav-arrow" aria-hidden="true" />
             </a>
           ))}
+
+          <div className="mobile-drawer-footer">
+            <div className="mobile-availability-card">
+              <span className="dot" aria-hidden="true" />
+              <span className="mobile-availability-text">{t("nav.availability")}</span>
+            </div>
+
+            <a
+              className="btn btn-primary mobile-cta-btn"
+              href="#contact"
+              onClick={() => setOpen(false)}
+            >
+              <span>{fr ? "Démarrer un projet" : "Start a project"}</span>
+              <ArrowUpRight className="w-4 h-4 ml-1.5" aria-hidden="true" />
+            </a>
+
+            <div className="mobile-drawer-socials">
+              <a href="https://github.com/Tendry81" target="_blank" rel="noopener noreferrer" className="mobile-social-link">
+                GitHub
+              </a>
+              <span className="mobile-social-sep">·</span>
+              <a href="https://www.linkedin.com/in/rijaniaina-tendry-randrianalifetra-547013243/" target="_blank" rel="noopener noreferrer" className="mobile-social-link">
+                LinkedIn
+              </a>
+              <span className="mobile-social-sep">·</span>
+              <a href="mailto:rijaniainatendry@gmail.com" className="mobile-social-link">
+                Email
+              </a>
+            </div>
+          </div>
         </nav>
 
         {/* Zone 3: Actions (Availability + Theme + Language) */}
         <div className="nav-actions">
-          <div className="availability" title={t("nav.availability")}>
+          <div className="availability desktop-only" title={t("nav.availability")}>
             <span className="dot" aria-hidden="true" />
             <span className="availability-text">{t("nav.availability")}</span>
           </div>
@@ -164,7 +220,7 @@ export function Nav() {
             <span>{fr ? "EN" : "FR"}</span>
           </a>
 
-          <a className="btn btn-primary nav-contact-btn" href="#contact" onClick={() => setOpen(false)}>
+          <a className="btn btn-primary nav-contact-btn desktop-only" href="#contact" onClick={() => setOpen(false)}>
             <span>Contact</span>
             <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
           </a>
