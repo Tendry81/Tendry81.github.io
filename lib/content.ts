@@ -27,7 +27,21 @@ export const SKILL_GROUPS: { key: TranslationKey; tags: string[] }[] = [
   },
   {
     key: "skills.infra",
-    tags: ["Docker", "Kubernetes", "Linux", "Apache", "Vault", "Keycloak", "Claude Code"],
+    tags: [
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "Apache",
+      "Vault",
+      "Keycloak",
+      "Claude Code",
+      "OpenAI SDK",
+      "Google GenAI SDK",
+      "Vercel AI SDK",
+      "CrewAI",
+      "MCP",
+      "Agent plugins & skills",
+    ],
   },
 ];
 

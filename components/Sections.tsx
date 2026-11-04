@@ -771,10 +771,14 @@ const EXPERIENCE = [
     highlights: {
       en: [
         "Claude Code used in day-to-day development",
+        "LLM integration through SDKs and GenAI frameworks: OpenAI, Google GenAI, Vercel AI SDK, CrewAI",
+        "Agent harness customization: plugins, tools, MCP servers, skills and commands",
         "Exploring structured collaboration between developers, AI agents and Git workflows",
       ],
       fr: [
         "Claude Code utilisé au quotidien dans le développement",
+        "Intégration de LLM via SDK et frameworks GenAI : OpenAI, Google GenAI, Vercel AI SDK, CrewAI",
+        "Personnalisation de harnais d’agents : plugins, outils, serveurs MCP, skills et commandes",
         "Exploration d’une collaboration structurée entre développeurs, agents IA et workflows Git",
       ],
     },
