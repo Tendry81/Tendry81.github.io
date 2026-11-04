@@ -19,13 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      # API routes can't be statically exported; on Pages the form posts
+      # to the Cloudflare Worker (NEXT_PUBLIC_CONTACT_ENDPOINT) instead.
+      - run: rm -rf app/api
+      - run: bun run build
         env:
+          NEXT_OUTPUT: export
           # Cloudflare Worker URL (repo Settings → Secrets and variables → Actions → Variables)
           NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT }}
       - uses: actions/upload-pages-artifact@v3
